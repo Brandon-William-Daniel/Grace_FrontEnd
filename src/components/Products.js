@@ -5,15 +5,31 @@ const Products = () => {
     useEffect(() => {
         async function getAllProducts(){
             const getProducts = await fetch('https://gg-3pln.onrender.com/api/products')
-            const jsonProd = await getAllProducts.json();
-            console.log('this is json ', jsonProd)
+            const jsonProd = await getProducts.json();
+            console.log('this is json ', jsonProd.products)
+            setProducts(jsonProd.products)
         }
         getAllProducts();
     }, [])
     return(
-        <div>
-            <h3>These are our products</h3>
-        </div>
+        products ? products.map((product) => {
+            return(
+                <div>
+                <div>
+                    <p>Name: {product.title}</p>
+                </div>
+                <div>
+                    <p>description: {product.description}</p>
+                </div>
+                <div>
+                    <p>price: {product.price}</p>
+                </div>
+                <div>
+                    <img src={product.photo}></img>
+                </div>
+                </div>
+            )
+        }):<p>Nothing to show</p>
     )
 }
 

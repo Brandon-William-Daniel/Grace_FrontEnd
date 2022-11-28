@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Outlet, Link } from "react-router-dom"
 
 const Homepage = () => {
+    const [products, setProducts] = useState();
+    useEffect(() => {
+        async function getAllProducts(){
+            const getProducts = await fetch('https://gg-3pln.onrender.com/api/products')
+            const jsonProd = await getProducts.json();
+            // console.log('this is json ', jsonProd.products)
+            setProducts(jsonProd.products)
+        }
+        getAllProducts();
+    }, [])
     return(
         <div>
             <header>
@@ -16,7 +26,7 @@ const Homepage = () => {
                 </nav>
             </header>
             <h1>Do we want text that goes page to page and is consistent?</h1>
-            <Outlet />
+            <Outlet context={{products}}/>
             <footer>
                Footer that will be at bottom of page: copyright stuff
             </footer>

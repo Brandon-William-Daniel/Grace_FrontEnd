@@ -3,7 +3,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
     const {id} = useParams()
-    console.log('this is id', id)
+    // console.log('this is id', id)
     const [singleProduct, setSingleProduct] = useState()
     const [flag, setFlag] = useState(false);
     useEffect(() => {
@@ -19,9 +19,9 @@ const ProductDetails = () => {
             }
         }
         getSinlgeProduct()
-        console.log(singleProduct)
+        // console.log(singleProduct)
     }, [flag])
-    console.log(flag)
+    // console.log(flag)
     // I am very proud of this flag system
     if(flag === true && singleProduct.active){
         return(

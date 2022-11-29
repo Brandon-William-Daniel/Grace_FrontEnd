@@ -36,6 +36,7 @@ const ProductDetails = () => {
                 <div>
                     <img src={singleProduct.photo}></img>
                 </div>
+                <button>Add product to cart!</button>
             </div>
         )
     } else{

@@ -17,6 +17,7 @@ const Products = () => {
                     <button>
                         <Link to={`/products/${idx + 1}`}>INFO</Link>
                     </button>
+                    <button>Buy Now!</button>
                 </div>
                 </div>
             )

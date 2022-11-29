@@ -5,7 +5,9 @@ const Homepage = () => {
     const [products, setProducts] = useState();
     useEffect(() => {
         async function getAllProducts(){
-            const getProducts = await fetch('https://gg-3pln.onrender.com/api/products')
+            const getProducts = await fetch('https://gg-3pln.onrender.com/api/products', {
+                method: 'GET'
+            })
             const jsonProd = await getProducts.json();
             // console.log('this is json ', jsonProd.products)
             setProducts(jsonProd.products)

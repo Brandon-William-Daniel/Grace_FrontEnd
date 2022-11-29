@@ -1,18 +1,21 @@
-import React, {useState, useEffect} from "react";
-
-const AddProduct = () => {
+import React, {useState} from 'react'
+import { useParams } from 'react-router'
+// NEED TO ADD TO ROUTER TO TEST
+const UpdateProduct = () => {
+    const {productid} = useParams()
+    console.log(productid)
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
     const [price, setPrice] = useState()
     const [invQty, setInvQty] = useState()
     const [photo, setPhoto] = useState();
     const [cat, setCat] = useState();
-    const [active, setActive] = useState(true);
+    const [active, setActive] = useState();
 
-    async function newProduct(event){
+    async function UpdateProduct(event){
         event.preventDefault();
-        const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products/newproduct`, {
-            method: "POST",
+        const updateFetch = await fetch(`https://gg-3pln.onrender.com/api/products/updateproduct/${productid}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": 'application/json',
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -21,12 +24,12 @@ const AddProduct = () => {
                 title,description,price,invQty,photo,cat,active
             })
         })
-        const jsonFetch = await prodFetch.json();
+        const jsonFetch = await updateFetch.json();
         console.log(jsonFetch)
     }
     return(
         <div>
-            <h3>Create a new product here!</h3>
+            <h3>Update Product Here</h3>
             <form onSubmit={newProduct}>
                 <label>Title:</label>
                 <input type='text' value={title} onChange={(event) => {
@@ -68,4 +71,4 @@ const AddProduct = () => {
     )
 }
 
-export default AddProduct
+export default UpdateProduct;

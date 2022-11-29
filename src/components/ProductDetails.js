@@ -8,7 +8,9 @@ const ProductDetails = () => {
     const [flag, setFlag] = useState(false);
     useEffect(() => {
         async function getSinlgeProduct(){
-            const singleProductFetch = await fetch(`https://gg-3pln.onrender.com/api/products/${id}`)
+            const singleProductFetch = await fetch(`https://gg-3pln.onrender.com/api/products/${id}`, {
+                method: 'GET'
+            })
             const singleJSON = await singleProductFetch.json();
             // console.log('this is a single product', singleJSON.product)
             setSingleProduct(singleJSON.product)

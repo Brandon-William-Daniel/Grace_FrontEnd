@@ -1,19 +1,26 @@
 import React, {useState, useEffect} from "react";
+import {Link, useOutletContext} from 'react-router-dom'
 // View all products
 const Products = () => {
-    const [products, setProducts] = useState();
-    useEffect(() => {
-        async function getAllProducts(){
-            const getProducts = await fetch('https://gg-3pln.onrender.com/api/products')
-            const jsonProd = await getAllProducts.json();
-            console.log('this is json ', jsonProd)
-        }
-        getAllProducts();
-    }, [])
+    const {products} = useOutletContext();
     return(
-        <div>
-            <h3>These are our products</h3>
-        </div>
+        products ? products.map((product, idx) => {
+            return(
+                <div className="productsDiv" key={idx}>
+                <div>
+                    <p>Name: {product.title}</p>
+                </div>
+                <div>
+                    <img src={product.photo} className="productImg"></img>
+                </div>
+                <div>
+                    <button>
+                        <Link to={`/products/${idx + 1}`}>INFO</Link>
+                    </button>
+                </div>
+                </div>
+            )
+        }):<p>Nothing to show</p>
     )
 }
 

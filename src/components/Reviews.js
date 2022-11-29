@@ -1,10 +1,39 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useParams, useOutletContext } from "react-router-dom"
 
 const Reviews = () => {
+    const [reviews, setReviews] = useState();
+    const {id} = useParams()
+    console.log("this is to see if we get id:", id)
+    useEffect(() => {
+        async function getReviewsByProduct(){
+            const getReviewsFetch = await fetch(`https://gg-3pln.onrender.com/api/reviews/${id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const reviewJSON = await getReviewsFetch.json()
+            // console.log("These are the reviews", reviewJSON.allReviews)
+            setReviews(reviewJSON.allReviews)
+
+        }
+        getReviewsByProduct();
+        console.log("useState reviews data", reviews)
+    }, [])
+    
     return(
-        <div>
-            <h3>Reviews for products</h3>
-        </div>
+        reviews ? reviews.map((review, idx) => {
+            return(
+                <div className="reviewDiv" key={idx}>
+                <div>
+                    <p>Title: {review.title}</p>
+                    <p>Description: {review.description}</p>
+                </div>
+                </div>
+            )
+        }):<p>No Reviews</p>
     )
 }
 

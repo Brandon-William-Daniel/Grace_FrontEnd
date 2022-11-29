@@ -74,7 +74,7 @@ const router = createBrowserRouter([
                 element: <AddProduct />
             },
             {
-                path: "/reviews",
+                path: "/reviews/:id",
                 element: <Reviews />
             },
             {

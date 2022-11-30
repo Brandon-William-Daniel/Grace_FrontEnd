@@ -18,18 +18,18 @@ const Homepage = () => {
         <div>
             <header>
                 <nav>
-                    <Link to="/">Home</Link>&nbsp;
-                    <Link to="/products">Products</Link>&nbsp;
-                    <Link to="/login">Login</Link>&nbsp;
-                    <Link to="/logout">Logout</Link>&nbsp;
-                    <Link to="/categories">Categories</Link>&nbsp;
-                    <Link to="/cart">View Cart</Link>&nbsp;
-                    <Link to="/profile">Profile</Link>
+                    <Link className="navLink" to="/">Home</Link>&nbsp;
+                    <Link className="navLink" to="/products">Products</Link>&nbsp;
+                    <Link className="navLink" to="/login">Login</Link>&nbsp;
+                    <Link className="navLink" to="/logout">Logout</Link>&nbsp;
+                    <Link className="navLink" to="/categories">Categories</Link>&nbsp;
+                    <Link className="navLink" to="/cart">View Cart</Link>&nbsp;
+                    <Link className="navLink" to="/profile">Profile</Link>
                 </nav>
             </header>
             <h1>Do we want text that goes page to page and is consistent?</h1>
             <Outlet context={{products}}/>
-            <footer>
+            <footer id="footer">
                Footer that will be at bottom of page: copyright stuff
             </footer>
         </div>

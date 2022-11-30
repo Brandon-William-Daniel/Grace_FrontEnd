@@ -1,11 +1,38 @@
 import React, {useState, useEffect} from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
     const {id} = useParams()
     // console.log('this is id', id)
+    const navigate = useNavigate()
     const [singleProduct, setSingleProduct] = useState()
+    const [quantity, setQuantity] = useState()
     const [flag, setFlag] = useState(false);
+
+    async function addProdToCart(event){
+        event.preventDefault();
+        try {
+            const testFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/orderdetails/${id}`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const tJson = await testFetch.json();
+            if(tJson){
+                console.log('added to cart')
+            }
+            if(tJson){
+                alert('Added product to cart!')
+                navigate('/products')
+            }
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
+    }
+
     useEffect(() => {
         async function getSinlgeProduct(){
             const singleProductFetch = await fetch(`https://gg-3pln.onrender.com/api/products/${id}`, {
@@ -38,7 +65,11 @@ const ProductDetails = () => {
                 <div>
                     <img src={singleProduct.photo}></img>
                 </div>
-                <button>Add product to cart!</button>
+                <form onSubmit={addProdToCart}>
+                    <label>Quantity:</label>
+                    <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
+                    <button type='submit'>Add to Cart</button>
+                </form>
             </div>
         )
     } else{

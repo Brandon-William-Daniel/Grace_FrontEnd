@@ -16,32 +16,6 @@ const CatagoryProd = () => {
         }
         getSpecifcProds()
     }, [])
-    async function addProdToCart(event){
-        event.preventDefault();
-        try {
-            const testFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/orderdetails/${item.id}`, {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify ({
-                    quantity
-                })
-            })
-            const tJson = await testFetch.json();
-            if(tJson){
-                console.log('added to cart')
-            }
-            if(tJson){
-                alert('Added product to cart!')
-                navigate('/products')
-            }
-        } catch (error) {
-            console.log(error)
-            throw error
-        }
-    }
     return(
         catProd ? catProd.map((item, idx) => {
             return(

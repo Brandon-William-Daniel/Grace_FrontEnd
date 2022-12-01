@@ -5,6 +5,7 @@ const Homepage = () => {
     const navigate = useNavigate()
     const [products, setProducts] = useState();
     const [user, setUser] = useState();
+
     useEffect(() => {
         async function getAllProducts(){
             const getProducts = await fetch('https://gg-3pln.onrender.com/api/products', {
@@ -15,18 +16,12 @@ const Homepage = () => {
             setProducts(jsonProd.products)
         }
         getAllProducts();
-
+        
        
+
     }, [])
 
-    async function logout(){
-        localStorage.removeItem("token")
-        alert('You have succesfully logged out')
-        navigate("/Login")
-        
-    }
-
-    async function getUser(){
+    const getUser = async()=> {
         try{
 
             const data = await fetch('https://gg-3pln.onrender.com/api/users/me', 
@@ -38,13 +33,28 @@ const Homepage = () => {
                 }
             })
             const getUser = await data.json()
-
+            console.log(user)
             setUser(getUser)
         }catch(error){
             console.log(error)
         } 
     }
-    getUser();
+    
+    useEffect(() =>{     
+        getUser()
+    },[])
+    
+
+    async function logout(){
+        localStorage.removeItem("token")
+        getUser()
+        alert('You have succesfully logged out')
+        navigate("/Login")
+        
+    }
+
+
+    
 
     return(
         <div>
@@ -60,7 +70,7 @@ const Homepage = () => {
                 </nav>
             </header>
             {user ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
-            <Outlet context={{products, user} }/>
+            <Outlet context={{products, user, getUser} }/>
             <footer id="footer">
                Footer that will be at bottom of page: copyright stuff
             </footer>

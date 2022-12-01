@@ -10,7 +10,7 @@ const Products = () => {
     }
     return(
         products ? products.map((product, idx) => {
-            console.log(product)
+            // console.log()
             return(
                 <div className="productsDiv" key={idx}>
                 <div>

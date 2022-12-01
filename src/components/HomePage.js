@@ -69,7 +69,7 @@ const Homepage = () => {
                     <Link className="navLink" to="/profile">Profile</Link>
                 </nav>
             </header>
-            {user ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
+            {user.username ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
             <Outlet context={{products, user, getUser} }/>
             <footer id="footer">
                Footer that will be at bottom of page: copyright stuff

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { Outlet, Link } from "react-router-dom"
+import { Outlet, Link, useNavigate } from "react-router-dom"
 
 const Homepage = () => {
+    const navigate = useNavigate()
     const [products, setProducts] = useState();
     useEffect(() => {
         async function getAllProducts(){
@@ -14,6 +15,14 @@ const Homepage = () => {
         }
         getAllProducts();
     }, [])
+
+    async function logout(){
+        localStorage.removeItem("token")
+        alert('You have succesfully logged out')
+        navigate("/Login")
+        
+    }
+
     return(
         <div>
             <header>
@@ -21,7 +30,7 @@ const Homepage = () => {
                     <Link className="navLink" to="/">Home</Link>&nbsp;
                     <Link className="navLink" to="/products">Products</Link>&nbsp;
                     <Link className="navLink" to="/login">Login</Link>&nbsp;
-                    <Link className="navLink" to="/logout">Logout</Link>&nbsp;
+                    <a className = "navLink" onClick={()=> {logout()}}>Logout</a>&nbsp;
                     <Link className="navLink" to="/categories">Categories</Link>&nbsp;
                     <Link className="navLink" to="/cart">View Cart</Link>&nbsp;
                     <Link className="navLink" to="/profile">Profile</Link>

@@ -22,7 +22,7 @@ const Products = () => {
                 </div>
                 <div>
                     <button>
-                        <Link to={`/products/${idx + 1}`}>INFO</Link>
+                        <Link to={`/products/${product.id}`}>INFO</Link>
                     </button>
                     <button onClick={buyNow}>Buy Now!</button>
                 </div>

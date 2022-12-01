@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 const Cart = () => {
     const [cart, setCart] = useState()
     async function checkoutCart(){
-        const checkoutFetch = await fetch(`urlhere`)
+        const checkoutFetch = await fetch()
     }
 
     useEffect(() => {

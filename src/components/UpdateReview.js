@@ -6,7 +6,7 @@ const UpdateReview = () => {
     const [description, setDescription] = useState("")
     const {id, userId} = useParams()
     console.log("This is the product id:", id)
-    console.log("This is the user id:", id)
+    console.log("This is the user id:", userId)
     
     function changeTitle (event) {
         setTitle(event.target.value)

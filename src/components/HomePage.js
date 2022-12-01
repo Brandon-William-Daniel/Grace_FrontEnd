@@ -19,7 +19,7 @@ const Homepage = () => {
         async function getUser(){
             try{
 
-                const data = await fetch('http://localhost:1337/api/users/me', 
+                const data = await fetch('https://gg-3pln.onrender.com/api/users/me', 
                 {
                     method: 'GET',
                     headers : {

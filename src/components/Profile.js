@@ -10,7 +10,7 @@ const Profile = () => {
 
     async function getCurrentCart () {
         try{
-            const data = await fetch(`http://localhost:1337/api/orders/viewcart`, 
+            const data = await fetch(`https://gg-3pln.onrender.com/api/orders/viewcart`, 
             {
                 method: "GET",
                 headers : {
@@ -30,7 +30,7 @@ const Profile = () => {
 
         async function getPastCart () {
         try{
-            const data = await fetch(`http://localhost:1337/api/orders/pastcart`, 
+            const data = await fetch(`https://gg-3pln.onrender.com/api/orders/pastcart`, 
             {
                 method: "GET",
                 headers : {

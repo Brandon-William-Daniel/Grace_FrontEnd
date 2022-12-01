@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { useOutletContext, useParams, useNavigate } from "react-router-dom";
+
+import { useOutletContext, useParams } from "react-router-dom";
+import Reviews from "./Reviews";
+import AddReview from "./AddReview";
+
 
 const ProductDetails = () => {
     const {id} = useParams()
@@ -65,11 +69,14 @@ const ProductDetails = () => {
                 <div>
                     <img src={singleProduct.photo}></img>
                 </div>
-                <form onSubmit={addProdToCart}>
-                    <label>Quantity:</label>
-                    <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
-                    <button type='submit'>Add to Cart</button>
-                </form>
+                <div>
+                    <Reviews />
+                </div>
+                <button>Add product to cart!</button>
+                <div>
+                    <AddReview />
+                </div>
+
             </div>
         )
     } else{

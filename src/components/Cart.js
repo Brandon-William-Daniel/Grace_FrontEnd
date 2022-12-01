@@ -2,6 +2,10 @@ import React, {useState, useEffect} from "react";
 
 const Cart = () => {
     const [cart, setCart] = useState()
+    async function checkoutCart(){
+        const checkoutFetch = await fetch(`urlhere`)
+    }
+
     useEffect(() => {
     async function getCart(){
         const cartFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/viewcart`, {
@@ -18,7 +22,8 @@ const Cart = () => {
      getCart()
     }, [])
     return(
-        cart ? cart.map((cart, idx) => {
+        <div>
+            {cart ? cart.map((cart, idx) => {
             return(
                 <div>
                     <div className="productsDiv"  key={idx}>
@@ -29,7 +34,9 @@ const Cart = () => {
                     </div>
                 </div>
             )
-        }): <p>Start filling your cart now!</p>
+        }): <p>Start filling your cart now!</p>}
+        <button>Checkout</button>
+        </div>
     )
 }
 

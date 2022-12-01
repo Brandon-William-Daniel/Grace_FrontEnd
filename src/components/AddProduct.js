@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate, useOutletContext } from "react-router";
 
 const AddProduct = () => {
     const [title, setTitle] = useState()
@@ -8,7 +9,8 @@ const AddProduct = () => {
     const [photo, setPhoto] = useState();
     const [cat, setCat] = useState();
     const [active, setActive] = useState(true);
-
+    const navigate = useNavigate()
+    const {setProducts} = useOutletContext()
     async function newProduct(event){
         event.preventDefault();
         const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products/newproduct`, {

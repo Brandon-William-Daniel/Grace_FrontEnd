@@ -16,25 +16,7 @@ const Homepage = () => {
         }
         getAllProducts();
 
-        async function getUser(){
-            try{
-
-                const data = await fetch('https://gg-3pln.onrender.com/api/users/me', 
-                {
-                    method: 'GET',
-                    headers : {
-                        'Content-Type': 'application/json',
-                        "Authorization" : `Bearer ${localStorage.getItem("token")}`
-                    }
-                })
-                const getUser = await data.json()
-
-                setUser(getUser)
-            }catch(error){
-                console.log(error)
-            } 
-        }
-        getUser();
+       
     }, [])
 
     async function logout(){
@@ -43,6 +25,26 @@ const Homepage = () => {
         navigate("/Login")
         
     }
+
+    async function getUser(){
+        try{
+
+            const data = await fetch('https://gg-3pln.onrender.com/api/users/me', 
+            {
+                method: 'GET',
+                headers : {
+                    'Content-Type': 'application/json',
+                    "Authorization" : `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            const getUser = await data.json()
+
+            setUser(getUser)
+        }catch(error){
+            console.log(error)
+        } 
+    }
+    getUser();
 
     return(
         <div>

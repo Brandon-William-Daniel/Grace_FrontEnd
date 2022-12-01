@@ -1,13 +1,42 @@
 import React, {useState, useEffect} from "react";
+
 import { useOutletContext, useParams } from "react-router-dom";
 import Reviews from "./Reviews";
 import AddReview from "./AddReview";
 
+
 const ProductDetails = () => {
     const {id} = useParams()
     // console.log('this is id', id)
+    const navigate = useNavigate()
     const [singleProduct, setSingleProduct] = useState()
+    const [quantity, setQuantity] = useState()
     const [flag, setFlag] = useState(false);
+
+    async function addProdToCart(event){
+        event.preventDefault();
+        try {
+            const testFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/orderdetails/${id}`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const tJson = await testFetch.json();
+            if(tJson){
+                console.log('added to cart')
+            }
+            if(tJson){
+                alert('Added product to cart!')
+                navigate('/products')
+            }
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
+    }
+
     useEffect(() => {
         async function getSinlgeProduct(){
             const singleProductFetch = await fetch(`https://gg-3pln.onrender.com/api/products/${id}`, {
@@ -47,6 +76,7 @@ const ProductDetails = () => {
                 <div>
                     <AddReview />
                 </div>
+
             </div>
         )
     } else{

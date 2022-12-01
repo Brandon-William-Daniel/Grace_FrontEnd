@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from "react";
+import {useOutletContext} from 'react-router-dom';
 
 const Profile = () => {
     const [current, setCurrent] = useState()
     const [cart, setCart] = useState()
     const [past, setPast] = useState()
+    const {user} = useOutletContext();
     
 
     async function getCurrentCart () {
@@ -37,7 +39,7 @@ const Profile = () => {
                 }
             })
             const results = await data.json()
-            setPast(results.cart.products) 
+            setPast(results.cart) 
             // console.log(results)
         } catch(error){
             console.log(error)
@@ -54,6 +56,12 @@ const Profile = () => {
         
     return(
         <div className = "mainPage"><h1>Profile</h1>
+        <div>
+            <h3>Username: {`${user.username}`}</h3>
+            <h3>Email: {`${user.email}`}</h3>
+            <h3>Current Ship To Address: {`${user.address}`}</h3>
+            
+        </div>
             <div><h1>Current Cart:</h1>
                {/* {console.log('current', current)} */}
                 {current && current.length ? current.map(el => {
@@ -64,7 +72,7 @@ const Profile = () => {
                         <div className = "quantity">Quantity: {el.quantity}</div> 
                         <div className = "price">Price: ${el.price}</div> 
                             
-                        </div>}) : "Internet Connection Not Valid"}
+                        </div>}) : "There is currently nothing to be displayed"}
                         <button> Buy Cart</button> 
             </div>
             <div><h1>Past Orders:</h1>
@@ -79,9 +87,7 @@ const Profile = () => {
                             
                         </div>}) : "You have no previous orders"}
             </div>            
-        </div>
-
-        
+        </div> 
         
     )
 }

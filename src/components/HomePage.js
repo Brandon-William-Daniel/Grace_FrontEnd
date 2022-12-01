@@ -69,8 +69,10 @@ const Homepage = () => {
                     <Link className="navLink" to="/profile">Profile</Link>
                 </nav>
             </header>
+
             {user.username ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
-            <Outlet context={{products, user, getUser} }/>
+            <Outlet context={{products, user, getUser, setProducts} }/>
+
             <footer id="footer">
                Footer that will be at bottom of page: copyright stuff
             </footer>

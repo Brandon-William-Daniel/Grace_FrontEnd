@@ -72,10 +72,14 @@ const ProductDetails = () => {
                 <div>
                     <img src={singleProduct.photo}></img>
                 </div>
+                <form onSubmit={addProdToCart}>
+                    <label>Quantity:</label>
+                    <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
+                    <button type='submit'>Add to Cart</button>
+                </form>
                 <div>
                     <Reviews />
                 </div>
-                <button>Add product to cart!</button>
                 <div>
                     <AddReview />
                 </div>

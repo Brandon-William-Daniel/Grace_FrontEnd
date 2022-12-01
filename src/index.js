@@ -18,7 +18,7 @@ import AddProduct from "./components/AddProduct";
 import Reviews from "./components/Reviews";
 import AddReview from "./components/AddReview";
 import DeleteReview from "./components/DeleteReview";
-
+import CatagoryProd from "./components/CatagoryProd";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -84,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: "/deletereview",
                 element: <DeleteReview />
+            },
+            {
+                path: "/product/catagory/:catId",
+                element: <CatagoryProd />
             }
         ]
     }

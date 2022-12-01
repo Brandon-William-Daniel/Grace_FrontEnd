@@ -3,6 +3,7 @@ import {Link, useOutletContext} from 'react-router-dom'
 // View all products
 const Products = () => {
     const {products} = useOutletContext();
+    
     return(
         products ? products.map((product, idx) => {
             return(

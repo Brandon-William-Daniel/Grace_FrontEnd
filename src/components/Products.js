@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useNavigate } from "react-router";
-import {Link, useOutletContext} from 'react-router-dom'
+import {Link, useOutletContext, useNavigate} from 'react-router-dom'
 // View all products
 const Products = () => {
     const {products} = useOutletContext();
@@ -11,6 +10,7 @@ const Products = () => {
     }
     return(
         products ? products.map((product, idx) => {
+            console.log(product)
             return(
                 <div className="productsDiv" key={idx}>
                 <div>

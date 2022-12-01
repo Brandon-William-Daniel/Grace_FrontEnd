@@ -21,9 +21,11 @@ const Cart = () => {
      }
      getCart()
     }, [])
+    console.log('this is cart', cart)
     return(
         <div>
             {cart ? cart.map((cart, idx) => {
+                if(cart.active){
             return(
                 <div>
                     <div className="productsDiv"  key={idx}>
@@ -33,7 +35,7 @@ const Cart = () => {
                         <br></br>
                     </div>
                 </div>
-            )
+            )}
         }): <p>Start filling your cart now!</p>}
         <button>Checkout</button>
         </div>

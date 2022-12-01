@@ -33,7 +33,9 @@ const Homepage = () => {
                 }
             })
             const getUser = await data.json()
-            console.log(user)
+           if(!getUser.username){
+            setUser()
+           }
             setUser(getUser)
         }catch(error){
             console.log(error)
@@ -70,7 +72,7 @@ const Homepage = () => {
                 </nav>
             </header>
 
-            {user.username ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
+            { user ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
             <Outlet context={{products, user, getUser, setProducts} }/>
 
             <footer id="footer">

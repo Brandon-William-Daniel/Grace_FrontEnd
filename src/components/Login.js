@@ -26,15 +26,16 @@ const Login = () => {
         // console.log(results)
         if (results.token) {
             localStorage.setItem("token", results.token)
-           
+            getUser()
+            navigate("../")
+            
+            alert(results.message)
         } else {
             alert (results.message)
         }
-        if (results.token){
-            navigate("../")
-            getUser()
-            alert(results.message)
-        }
+        // if (results.token){
+           
+        // }
     } catch(error){
         console.log(error)
     }

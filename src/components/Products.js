@@ -10,6 +10,7 @@ const Products = () => {
                 <div className="productsDiv" key={idx}>
                 <div>
                     <p>Name: {product.title}</p>
+                    <p>Price: ${product.price}</p>
                 </div>
                 <div>
                     <img src={product.photo} className="productImg"></img>

@@ -6,7 +6,7 @@ const ProductDetails = () => {
     // console.log('this is id', id)
     const navigate = useNavigate()
     const [singleProduct, setSingleProduct] = useState()
-    const [quantity, setQuantity] = useState()
+    const [quantity, setQuantity] = useState(1)
     const [flag, setFlag] = useState(false);
 
     async function addProdToCart(event){
@@ -17,7 +17,10 @@ const ProductDetails = () => {
                 headers: {
                     "Content-Type": 'application/json',
                     "Authorization": `Bearer ${localStorage.getItem('token')}`
-                }
+                },
+                body: JSON.stringify ({
+                    quantity
+                })
             })
             const tJson = await testFetch.json();
             if(tJson){
@@ -60,7 +63,7 @@ const ProductDetails = () => {
                     <p>{singleProduct.description}</p>
                 </div>
                 <div>
-                    <p>{singleProduct.price}</p>
+                    <p>${singleProduct.price}</p>
                 </div>
                 <div>
                     <img src={singleProduct.photo}></img>

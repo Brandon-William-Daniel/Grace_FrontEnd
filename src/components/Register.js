@@ -1,11 +1,13 @@
 import { useState } from "react"
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate, useOutletContext} from "react-router-dom"
+
 
 const Register = () => {
         const [username, setUsername] = useState("")
         const [password, setPassword] = useState("")
         const [email, setEmail] = useState("")
         const [address, setAddress] = useState("")
+        const { getUser } = useOutletContext();
 
         const navigate = useNavigate()
         
@@ -29,7 +31,8 @@ const Register = () => {
                 const results = await data.json()
                     console.log(results)
                 if (results) {
-                    localStorage.setItem("token", results.token)   
+                    localStorage.setItem("token", results.token)
+                    getUser()   
                 } else {
                     alert (results.message)
                 }

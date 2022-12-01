@@ -1,5 +1,5 @@
 .productsDiv{
-    border: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .productImg{
@@ -28,10 +28,15 @@ body {
 }
 
 #footer {
-    color: blue;
-    position: absolute;
+    color: white;
+    background-color: black;
+    /* position: fixed; */
     bottom: 0;
     width: 100%;
     height: 2.5rem;
     text-align: center;
+    margin-bottom: -10;
+    margin-top: 10;
+    /* padding: 20px; */
+
 }

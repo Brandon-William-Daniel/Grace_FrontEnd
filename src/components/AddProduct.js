@@ -11,23 +11,8 @@ const AddProduct = () => {
     const [active, setActive] = useState(true);
     const navigate = useNavigate()
     const [user, setUser] = useState()
-    
-    useEffect(() => {
-        async function checkAdmin(){
-            const fetchData = await fetch(`https://gg-3pln.onrender.com/api/users/me`, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            const jsonData = await fetchData.json()
-            if(jsonData){
-                setUser(jsonData)
-            }
-        }
-        checkAdmin()
-    }, [])
+    const [flag, setFlag] = useState(false)
+
     async function newProduct(event){
         event.preventDefault();
         const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products/newproduct`, {
@@ -41,7 +26,7 @@ const AddProduct = () => {
             })
         })
         const jsonFetch = await prodFetch.json();
-        console.log('jsonFetch,', jsonFetch)
+        // console.log('jsonFetch,', jsonFetch)
         if(jsonFetch.product){
             alert('Product Added')
             navigate('/')
@@ -49,18 +34,7 @@ const AddProduct = () => {
             alert('You must be an admin user to do this')
             navigate('/')
         }
-        // if(jsonFetch.newProduct){
-        //     async function showAllProducts(){
-        //         const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products`)
-        //         const jsonProduct = await prodFetch.json();
-        //         // console.log('this is updated list', jsonProduct)
-        //         setProducts(jsonProduct)
-        //     }
-        //     showAllProducts();
-        //     navigate('/')
-        // }
     }
-    if(user && user.isAdmin === true){
         return(
             <div>
                 <h3>Create a new product here!</h3>
@@ -103,13 +77,6 @@ const AddProduct = () => {
                 </form>
             </div>
         )
-    }else if(user.isAdmin === false){
-        return(
-        <div>
-            <h1>Admins Only Beyond this point</h1>
-        </div>
-        )
-    }
 }
 
 export default AddProduct

@@ -1,10 +1,12 @@
 import React from 'react'
-import { json, useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router-dom'
 
 const DeleteProduct = () => {
-    async function deleteProduct(){
+    const {productid} = useParams()
+    const navigate = useNavigate()
+    async function deleteProduct(event){
+        event.preventDefault();
         try{
-        const {productid} = useParams()
         const delFetch = await fetch(`https://gg-3pln.onrender.com/api/products/deleteproduct/${productid}`, {
             method: 'DELETE',
             headers: {
@@ -14,7 +16,8 @@ const DeleteProduct = () => {
         })
         const jsonDel = await delFetch.json();
         if(jsonDel){
-            console.log('DELETED')
+            alert('Product Deleted')
+            navigate('/')
         }
     } catch(error){
         console.log(error)
@@ -22,7 +25,13 @@ const DeleteProduct = () => {
     }
     return(
         <div>
-            <h3>Are you sure you want to delete this product?</h3>
+            <form onSubmit={deleteProduct}>
+                <label>Are you Sure you want to delete this product?</label>
+                <br></br>
+                <input type='submit'></input>
+            </form>
         </div>
     )
 }
+
+export default DeleteProduct

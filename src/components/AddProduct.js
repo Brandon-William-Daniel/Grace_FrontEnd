@@ -24,7 +24,17 @@ const AddProduct = () => {
             })
         })
         const jsonFetch = await prodFetch.json();
-        console.log(jsonFetch)
+        console.log('jsonFetch,', jsonFetch)
+        // if(jsonFetch.newProduct){
+        //     async function showAllProducts(){
+        //         const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products`)
+        //         const jsonProduct = await prodFetch.json();
+        //         // console.log('this is updated list', jsonProduct)
+        //         setProducts(jsonProduct)
+        //     }
+        //     showAllProducts();
+        //     navigate('/')
+        // }
     }
     return(
         <div>

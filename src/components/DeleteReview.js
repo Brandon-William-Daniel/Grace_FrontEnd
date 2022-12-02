@@ -1,13 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom"
+import { useParams, useOutletContext } from "react-router-dom"
 
 const DeleteReview = () => {
-    const {id, userId} = useParams()
-    console.log("This is the product id:", id)
-    console.log("This is the user id:" , userId)
+    const {id} = useParams()
+    const {user} = useOutletContext()
+    console.log("This is the delete review product id:", id)
+    console.log("This is the delete user id:" , user.id)
     async function deleteReview() {
         try {
-            const deleteReviewFetch = await fetch (`https://gg-3pln.onrender.com/api/reviews/deletereview/${id}/3`, {
+            const deleteReviewFetch = await fetch (`https://gg-3pln.onrender.com/api/reviews/deletereview/${id}/${user.id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

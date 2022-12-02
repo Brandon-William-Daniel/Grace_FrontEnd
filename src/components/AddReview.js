@@ -5,7 +5,7 @@ const AddReview = () => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const {id} = useParams()
-    console.log("This is productid", id)
+    // console.log("This is productid", id)
     
     async function addNewReview(event){
         event.preventDefault();
@@ -43,7 +43,7 @@ const AddReview = () => {
     }
 
     return(
-        <div className="reviewContanier">
+        <div className="reviewDiv">
             <h3>Add a review to a product</h3>
                 <form onSubmit={addNewReview}>
                     <div className="reviewTitle">

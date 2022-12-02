@@ -1,10 +1,15 @@
-import React from 'react'
-import { json, useParams } from 'react-router'
+import React, {useState, useEffect} from 'react'
+import { useParams, useNavigate, useOutletContext } from 'react-router-dom'
 
 const DeleteProduct = () => {
-    async function deleteProduct(){
+    const {productid} = useParams()
+    const [singleProd, setSingleProd] = useState()
+    const [flag, setFlag] = useState(false);
+    const navigate = useNavigate()
+    const {user} = useOutletContext()
+    async function deleteProduct(event){
+        event.preventDefault();
         try{
-        const {productid} = useParams()
         const delFetch = await fetch(`https://gg-3pln.onrender.com/api/products/deleteproduct/${productid}`, {
             method: 'DELETE',
             headers: {
@@ -14,15 +19,43 @@ const DeleteProduct = () => {
         })
         const jsonDel = await delFetch.json();
         if(jsonDel){
-            console.log('DELETED')
+            alert('Product Deleted')
+            navigate('/')
         }
     } catch(error){
         console.log(error)
     }
     }
-    return(
-        <div>
-            <h3>Are you sure you want to delete this product?</h3>
-        </div>
-    )
+
+    useEffect(() => {
+        async function getSingleProd(){
+            const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products/${productid}`)
+            const singleJson = await prodFetch.json()
+            setSingleProd(singleJson.product)
+            if(singleJson){
+                setFlag(true)
+            }
+        }
+        getSingleProd()
+    }, [flag])
+    if(flag === true && singleProd.active && user && user.isAdmin){
+        return(
+            <div>
+                <form onSubmit={deleteProduct}>
+                    <label>Are you Sure you want to delete this product?</label>
+                    <p>{singleProd.title}</p>
+                    <br></br>
+                    <img src={singleProd.photo}></img>
+                    <br></br>
+                    <input type='submit'></input>
+                </form>
+            </div>
+        )
+    } else{
+        return(
+        <h1>Admins only beyond this point</h1>
+        )
+    }
 }
+
+export default DeleteProduct

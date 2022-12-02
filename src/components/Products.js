@@ -28,7 +28,7 @@ const Products = () => {
                 </div>
                 </div>
             )
-        }):<p>Nothing to show</p>
+        }):<p>Loading tons of great Products now!</p>
     )
 }
 

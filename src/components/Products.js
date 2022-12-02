@@ -9,6 +9,7 @@ const Products = () => {
         navigate('/')
     }
     return(
+        <div className="productsContainer"> {
         products ? products.map((product, idx) => {
             // console.log()
             return(
@@ -29,6 +30,7 @@ const Products = () => {
                 </div>
             )
         }):<p>Loading tons of great Products now!</p>
+    }</div>
     )
 }
 

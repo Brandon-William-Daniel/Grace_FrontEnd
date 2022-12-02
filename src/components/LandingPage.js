@@ -1,10 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom"
 
+
 const LandingPage = () => {
     return (
-        <div>
-            <h3>Welcome to our landing page, this will be first seen when entering our site. We will display newest item, hot deals and categories</h3>
+        <div className="landingPage">
+            <h3>Welcome to Grace's Gag Gifts! We have a large inventory of items to help spread holiday jeer!</h3>
+            <div className="landingPhotos">
+                
+            </div>
         </div>
     )
 }

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useParams, useOutletContext } from "react-router-dom"
+import DeleteReview from "./DeleteReview";
+import UpdateReview from "./UpdateReview";
 
 const Reviews = () => {
     const [reviews, setReviews] = useState();
@@ -20,7 +22,7 @@ const Reviews = () => {
 
         }
         getReviewsByProduct();
-        console.log("useState reviews data", reviews)
+        // console.log("useState reviews data", reviews)
     }, [])
     
     return(
@@ -30,6 +32,7 @@ const Reviews = () => {
                 <div>
                     <p>Title: {review.title}</p>
                     <p>Description: {review.description}</p>
+                    <DeleteReview /> <UpdateReview />
                 </div>
                 </div>
             )

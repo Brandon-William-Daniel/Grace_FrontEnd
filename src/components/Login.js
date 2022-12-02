@@ -1,10 +1,11 @@
 import {useState} from "react"
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate, useOutletContext} from "react-router-dom"
 
 const Login = () => {
    const [username, setUsername] = useState("")
    const [password, setPassword] = useState("")
     const navigate = useNavigate()
+    const { getUser } = useOutletContext();
 
    async function loginAPI (event) {
     event.preventDefault()
@@ -25,13 +26,16 @@ const Login = () => {
         // console.log(results)
         if (results.token) {
             localStorage.setItem("token", results.token)
+            getUser()
+            navigate("../")
+            
+            alert(results.message)
         } else {
             alert (results.message)
         }
-        if (results.token){
-            navigate("../")
-            alert(results.message)
-        }
+        // if (results.token){
+           
+        // }
     } catch(error){
         console.log(error)
     }

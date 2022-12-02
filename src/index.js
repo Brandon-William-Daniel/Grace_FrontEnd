@@ -20,6 +20,7 @@ import AddReview from "./components/AddReview";
 import DeleteReview from "./components/DeleteReview";
 import CatagoryProd from "./components/CatagoryProd";
 import DeleteProduct from "./components/DeleteProduct";
+import UpdateProduct from "./components/UpdateProduct";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
             {
                 path: "/product/delete/:productid",
                 element: <DeleteProduct />
+            },
+            {
+                path: "/updateproduct/:productid",
+                element: <UpdateProduct />
             }
         ]
     }

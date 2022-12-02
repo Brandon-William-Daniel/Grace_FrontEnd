@@ -16,15 +16,13 @@ const Homepage = () => {
             // console.log('this is json ', jsonProd.products)
             setProducts(jsonProd.products)
         }
-        getAllProducts();
-        
-       
+        getAllProducts();   
 
     }, [])
 
     const getUser = async()=> {
         try{
-
+            
             const data = await fetch('https://gg-3pln.onrender.com/api/users/me', 
             {
                 method: 'GET',
@@ -47,7 +45,6 @@ const Homepage = () => {
         getUser()
     },[])
     
-
     async function logout(){
         localStorage.removeItem("token")
         getUser()
@@ -55,9 +52,6 @@ const Homepage = () => {
         navigate("/Login")
         
     }
-
-console.log(user)
-    
 
     return(
         <div>

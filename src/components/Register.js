@@ -1,89 +1,100 @@
-import { useState } from "react"
-import {Link, useNavigate, useOutletContext} from "react-router-dom"
-
+import { useState } from "react";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 
 const Register = () => {
-        const [username, setUsername] = useState("")
-        const [password, setPassword] = useState("")
-        const [email, setEmail] = useState("")
-        const [address, setAddress] = useState("")
-        const { getUser } = useOutletContext();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const { getUser } = useOutletContext();
 
-        const navigate = useNavigate()
-        
-        async function registerAPI (event) {
-            event.preventDefault()
+  const navigate = useNavigate();
 
-            try{
-                const data = await fetch('https://gg-3pln.onrender.com/api/users/register', 
-                {
-                    method : "POST",
-                    headers : {
-                        'Content-Type' : "application/json"
-                    }, body: JSON.stringify({
-                        username,
-                        password,
-                        email,
-                        address
-                      })
-                    
-                })
-                const results = await data.json()
-                    console.log(results)
-                if (results) {
-                    localStorage.setItem("token", results.token)
-                    getUser()   
-                } else {
-                    alert (results.message)
-                }
-                if (results){
-                     navigate("../")
-                }
-                
-            } catch(error){
-                console.log(error)
-            }
-            
-           }
+  async function registerAPI(event) {
+    event.preventDefault();
 
-        function changePass (event) {
-         setPassword(event.target.value)
+    try {
+      const data = await fetch(
+        "https://gg-3pln.onrender.com/api/users/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            email,
+            address,
+          }),
         }
-        function changeUser (event) {
-         setUsername(event.target.value)
-        }
-        function changeEmail (event) {
-            setEmail(event.target.value)
-        } 
-        function changeAddress (event) {
-            setAddress(event.target.value)
-        }
-         return (
-            <div className = "container">
-            <form onSubmit={registerAPI}>
-                <div className = "TypingInput">
-                    <div>Enter Username: </div>
-                    <input type = "text" value = {username} onChange={changeUser}></input>
-                </div>
-                <div className = "TypingInput">
-                    <div>Enter Password: </div>
-                    <input type = "password" value = {password} onChange={changePass}></input>
-                </div>
-                <div className = "TypingInput">
-                    <div>Enter Email: </div>
-                    <input type = "email" value = {email} onChange={changeEmail}></input>
-                </div>
-                <div className = "TypingInput">
-                    <div>Enter Address: </div>
-                    <input type = "text" value = {address} onChange={changeAddress}></input>
-                </div>
-                <div className = "submitcontain">
-                   <button type = "submit">Register</button>
-                </div>
-            </form>
-          </div>
-     
-         ) 
-}
+      );
+      const results = await data.json();
+      console.log(results);
+      if (results) {
+        localStorage.setItem("token", results.token);
+        getUser();
+      } else {
+        alert(results.message);
+      }
+      if (results) {
+        navigate("../");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //Matt: when you have a lot of fields, sometimes you get repetitve code, like these change functions. One way around that is to use a single object to hold form data:
+  //  const [formData, setFormData] = useState({
+  //     password: "",
+  //     username: "",
+  //     email: "",
+  //     address: ""
+  //    })
+  // then you can use a single change function for all fields:
+  //   function handleChange(event) {
+  //     setFormData({
+  //    ...formData,
+  //    [event.target.name]: event.target.value
+  //  });
+  //   }
+  function changePass(event) {
+    setPassword(event.target.value);
+  }
+  function changeUser(event) {
+    setUsername(event.target.value);
+  }
+  function changeEmail(event) {
+    setEmail(event.target.value);
+  }
+  function changeAddress(event) {
+    setAddress(event.target.value);
+  }
+  return (
+    <div className="container">
+      <form onSubmit={registerAPI}>
+        <div className="TypingInput">
+          <div>Enter Username: </div>
+          <input type="text" value={username} onChange={changeUser}></input>
+        </div>
+        <div className="TypingInput">
+          <div>Enter Password: </div>
+          <input type="password" value={password} onChange={changePass}></input>
+        </div>
+        <div className="TypingInput">
+          <div>Enter Email: </div>
+          <input type="email" value={email} onChange={changeEmail}></input>
+        </div>
+        <div className="TypingInput">
+          <div>Enter Address: </div>
+          <input type="text" value={address} onChange={changeAddress}></input>
+        </div>
+        <div className="submitcontain">
+          <button type="submit">Register</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-export default Register
+export default Register;

@@ -1,9 +1,28 @@
 import React, {useState, useEffect} from "react";
+import { useOutletContext, useNavigate } from "react-router";
+import {useParams} from 'react-router-dom'
+
 
 const Cart = () => {
     const [cart, setCart] = useState()
+    const {user} = useOutletContext()
+    const {detailId} = useParams()
+    const {products} = useOutletContext()
+    const navigate = useNavigate()
+    console.log(user)
     async function checkoutCart(){
-        const checkoutFetch = await fetch()
+        const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${user.id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        // const msg = await checkoutFetch.json()
+        if(checkoutFetch){
+            alert('Purchased')
+            navigate('/')
+        }
     }
 
     useEffect(() => {
@@ -22,45 +41,47 @@ const Cart = () => {
      getCart()
     }, [])
 
-    async function removeFromCart(event){
-        event.preventDefault();
+    async function removeFromCart(itemId){
         try {
-            const removeFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/detail/${cart.id}`, {
+            const removeFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/detail/${itemId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            const jsonFetc = await removeFetch.json()
-            console.log(jsonFetc)
+            // const jsonFetc = await removeFetch.json()
+            console.log(removeFetch)
         } catch (error) {
             console.log(error)
         }
     }
-    console.log('this is cart', cart)
+
+    // console.log('this is cart', cart)
     return(
         <div>
-            {cart ? cart.map((cart, idx) => {
-                if(cart.active){
+            {cart ? cart.map((cartItm, idx) => {
+                if(cartItm.active){
             return(
                 <div key={idx}>
                     <div className="productsDiv">
-                        <div>Title: {cart.title}</div>
-                        <div>Description: {cart.description}</div>
-                        <div>Quanitity: {cart.quantity} </div>
-                        <div>Price: ${cart.price}</div>
+                        <div>Title: {cartItm.title}</div>
+                        <div>Description: {cartItm.description}</div>
+                        <div>Quanitity: {cartItm.quantity} </div>
+                        <div>Price: ${cartItm.price}</div>
                         <br></br>
-                        <form onSubmit={removeFromCart}>
-                            <button type='submit' onClick={() => {
-                                console.log('cart', cart)
+                            <button onClick={() => {
+                                // console.log('cart', cartItm)
+                                // console.log('carti', idx)
+                                removeFromCart(cartItm.id)
                             }}>Remove from cart</button>
-                        </form>
                     </div>
                 </div>
             )}
         }): <p>Start filling your cart now!</p>}
-        <button>Checkout</button>
+        <button onClick={() => {
+            checkoutCart()
+        }}>Checkout</button>
         </div>
     )
 }

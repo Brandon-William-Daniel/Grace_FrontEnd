@@ -1,12 +1,13 @@
 import React, {useState} from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useOutletContext } from "react-router-dom"
 
 const UpdateReview = () => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const {id, userId} = useParams()
-    console.log("This is the product id:", id)
-    console.log("This is the user id:", userId)
+    const {id} = useParams()
+    const {user} = useOutletContext()
+    console.log("This is the update review product id:", id)
+    console.log("This is the update review user id:", user.id)
     
     function changeTitle (event) {
         setTitle(event.target.value)
@@ -19,7 +20,7 @@ const UpdateReview = () => {
     async function updateReview(event) {
         event.preventDefault()
         try {
-            const updateReviewFetch = await fetch (`https://gg-3pln.onrender.com/api/reviews/updatereview/${id}/3`, {
+            const updateReviewFetch = await fetch (`https://gg-3pln.onrender.com/api/reviews/updatereview/${id}/${user.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

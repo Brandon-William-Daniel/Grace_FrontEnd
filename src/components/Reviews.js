@@ -6,7 +6,8 @@ import UpdateReview from "./UpdateReview";
 const Reviews = () => {
     const [reviews, setReviews] = useState();
     const {id} = useParams()
-    console.log("this is to see if we get id:", id)
+    const {user} = useOutletContext()
+    // console.log("this is to see if we get id:", id)
     useEffect(() => {
         async function getReviewsByProduct(){
             const getReviewsFetch = await fetch(`https://gg-3pln.onrender.com/api/reviews/${id}`,
@@ -32,7 +33,8 @@ const Reviews = () => {
                 <div>
                     <p>Title: {review.title}</p>
                     <p>Description: {review.description}</p>
-                    <DeleteReview /> <UpdateReview />
+                    {review.userId === user.id ? <UpdateReview /> : <p></p> }
+                    {review.userId === user.id ? <DeleteReview /> : <p></p> }
                 </div>
                 </div>
             )

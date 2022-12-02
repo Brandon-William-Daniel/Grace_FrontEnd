@@ -9,9 +9,9 @@ const AddProduct = () => {
     const [photo, setPhoto] = useState();
     const [cat, setCat] = useState();
     const [active, setActive] = useState(true);
+    const {user} = useOutletContext()
+    // console.log(user)
     const navigate = useNavigate()
-    const [user, setUser] = useState()
-    const [flag, setFlag] = useState(false)
 
     async function newProduct(event){
         event.preventDefault();
@@ -35,6 +35,7 @@ const AddProduct = () => {
             navigate('/')
         }
     }
+    if(user && user.isAdmin){
         return(
             <div>
                 <h3>Create a new product here!</h3>
@@ -76,7 +77,13 @@ const AddProduct = () => {
                     <input type='submit'></input>
                 </form>
             </div>
-        )
+        )} else{
+            return(
+                <div>
+                    <h1>Admins only beyong this point</h1>
+                </div>
+            )
+        }
 }
 
 export default AddProduct

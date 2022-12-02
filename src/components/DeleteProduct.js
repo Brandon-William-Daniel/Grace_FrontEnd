@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useOutletContext } from 'react-router-dom'
 
 const DeleteProduct = () => {
     const {productid} = useParams()
     const [singleProd, setSingleProd] = useState()
     const [flag, setFlag] = useState(false);
     const navigate = useNavigate()
+    const {user} = useOutletContext()
     async function deleteProduct(event){
         event.preventDefault();
         try{
@@ -37,7 +38,7 @@ const DeleteProduct = () => {
         }
         getSingleProd()
     }, [flag])
-    if(flag === true && singleProd.active){
+    if(flag === true && singleProd.active && user && user.isAdmin){
         return(
             <div>
                 <form onSubmit={deleteProduct}>
@@ -51,7 +52,9 @@ const DeleteProduct = () => {
             </div>
         )
     } else{
-        <p>Loading Data</p>
+        return(
+        <h1>Admins only beyond this point</h1>
+        )
     }
 }
 

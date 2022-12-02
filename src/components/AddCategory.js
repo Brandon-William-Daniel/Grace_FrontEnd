@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import { useOutletContext } from "react-router";
 
 const AddCategory = () => {
     const [catagoryName, setCatagoryName] = useState()
+    const {user} = useOutletContext()
     async function createcatagory(event){
         event.preventDefault();
         const newCatFetch = await fetch(`https://gg-3pln.onrender.com/api/catagories/newcatagory`, {
@@ -17,6 +19,7 @@ const AddCategory = () => {
         const jsonCatFetch = await newCatFetch.json()
         console.log(jsonCatFetch)
     }
+    if(user && user.isAdmin){
     return(
         <div>
             <h3>Create A New Cataogry Here!</h3>
@@ -29,7 +32,13 @@ const AddCategory = () => {
                 <input type='submit'></input>
             </form>
         </div>
-    )
+    )}else{
+        return(
+        <div>
+            <h1>Admins only beyond this point</h1>
+        </div>
+        )
+    }
 }
 
 export default AddCategory

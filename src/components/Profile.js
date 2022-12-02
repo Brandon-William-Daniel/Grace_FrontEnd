@@ -55,11 +55,18 @@ const Profile = () => {
 
         
     return(
-        <div className = "mainPage"><h1>Profile</h1>
-        <div>
-            <h3>Username: {`${user.username}`}</h3>
-            <h3>Email: {`${user.email}`}</h3>
-            <h3>Current Ship To Address: {`${user.address}`}</h3>
+         
+            <div className = "mainPage"><h1>Profile</h1>
+             <div>
+                {user && user.username ?
+                <div> 
+                    <h3>Username: {`${user.username}`}</h3>
+                    <h3>Email: {`${user.email}`}</h3>
+                    <h3>Current Ship To Address: {`${user.address}`}</h3>
+                    {user.isAdmin? <button>Admin</button> : "" } 
+                </div>: 'Must login or register to continue'}
+            
+        
             
         </div>
             <div><h1>Current Cart:</h1>
@@ -86,9 +93,9 @@ const Profile = () => {
                         <div className = "price">Price: ${el.price}</div> 
                             
                         </div>}) : "You have no previous orders"}
-            </div>            
-        </div> 
-        
+            </div>             
+        </div>
+       
     )
 }
 

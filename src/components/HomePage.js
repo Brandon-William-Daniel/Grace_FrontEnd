@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom"
 
+
 const Homepage = () => {
     const navigate = useNavigate()
     const [products, setProducts] = useState();
@@ -33,9 +34,9 @@ const Homepage = () => {
                 }
             })
             const getUser = await data.json()
-           if(!getUser.username){
+          if(!getUser.username){
             setUser()
-           }
+          }
             setUser(getUser)
         }catch(error){
             console.log(error)
@@ -55,7 +56,7 @@ const Homepage = () => {
         
     }
 
-
+console.log(user)
     
 
     return(
@@ -72,7 +73,7 @@ const Homepage = () => {
                 </nav>
             </header>
 
-            { user ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
+            { user && user.username ? <h1>Welcome {`${user.username}`}</h1>: <h1>Welcome Guest!</h1>}
             <Outlet context={{products, user, getUser, setProducts} }/>
 
             <footer id="footer">

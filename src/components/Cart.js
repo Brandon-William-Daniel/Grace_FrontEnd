@@ -31,6 +31,7 @@ const Cart = () => {
                     <div className="productsDiv"  key={idx}>
                         <div>Title: {cart.title}</div>
                         <div>Description: {cart.description}</div>
+                        <div>Quanitity: {cart.quantity} </div>
                         <div>Price: ${cart.price}</div>
                         <br></br>
                     </div>

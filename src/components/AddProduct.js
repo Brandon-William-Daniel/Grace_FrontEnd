@@ -11,6 +11,7 @@ const AddProduct = () => {
     const [active, setActive] = useState(true);
     const navigate = useNavigate()
     const {setProducts} = useOutletContext()
+    const{user} = useOutletContext()
     async function newProduct(event){
         event.preventDefault();
         const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products/newproduct`, {
@@ -25,6 +26,13 @@ const AddProduct = () => {
         })
         const jsonFetch = await prodFetch.json();
         console.log('jsonFetch,', jsonFetch)
+        if(jsonFetch.product){
+            alert('Product Added')
+            navigate('/')
+        }else{
+            alert('You must be an admin user to do this')
+            navigate('/')
+        }
         // if(jsonFetch.newProduct){
         //     async function showAllProducts(){
         //         const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products`)

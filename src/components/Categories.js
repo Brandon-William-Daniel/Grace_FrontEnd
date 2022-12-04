@@ -16,16 +16,18 @@ const Categories = () => {
         getCat()
     }, [])
     return(
+      <div className="catContainer"> {
       cat ? cat.map((cat, idx) => {
         return(
-            <div className="productsDiv" key={idx}>
+            <div className="catDiv" key={idx}>
                 <p>{cat.catName}</p>
                 <button>
-                    <Link to={`/product/catagory/${cat.id}`}>See all products of this catagory</Link>
+                    <Link className="link" to={`/product/catagory/${cat.id}`}>See all products of this catagory</Link>
                 </button>
             </div>
         )
       }):<p>No Catagories to show</p>
+    }</div>  
     )
 }
 

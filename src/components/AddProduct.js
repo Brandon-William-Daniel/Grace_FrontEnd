@@ -28,12 +28,14 @@ const AddProduct = () => {
         const jsonFetch = await prodFetch.json();
         console.log('jsonFetch,', jsonFetch)
         if(jsonFetch.newProduct){
-            console.log('here')
+            // console.log('here')
             async function getAllProds(){
-                const fetchData = await fetch(`https://gg-3pln.onrender.com/api/products`)
+                const fetchData = await fetch(`https://gg-3pln.onrender.com/api/products`, {
+                    method: "GET"
+                })
                 const jsonData = await fetchData.json()
                 console.log('data', jsonData)
-                setProducts(jsonData)
+                setProducts(jsonData.products)
             }
             getAllProds()
             alert('Product created')

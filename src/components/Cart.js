@@ -30,6 +30,7 @@ const Cart = () => {
     }, [])
 
     async function removeFromCart(itemId){
+        console.log(itemId)
         try {
             const removeFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/detail/${itemId}`, {
                 method: 'DELETE',
@@ -39,7 +40,11 @@ const Cart = () => {
                 }
             })
             // const jsonFetc = await removeFetch.json()
-            // console.log(removeFetch)
+            console.log(removeFetch)
+            if(removeFetch){
+               alert('Removed')
+               window.location.reload()
+            }
         } catch (error) {
             console.log(error)
         }

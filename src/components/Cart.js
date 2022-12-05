@@ -68,7 +68,7 @@ const Cart = () => {
                 if(cartItm.active){
             return(
                 <div key={idx}>
-                    <div className="productsDiv">
+                    <div className="cartDiv">
                         <div>Title: {cartItm.title}</div>
                         <div>Description: {cartItm.description}</div>
                         <div>Quanitity: {cartItm.quantity} </div>

@@ -60,26 +60,34 @@ const ProductDetails = () => {
     if(flag === true && singleProduct.active){
         return(
             <div>
-                <div>
-                    <p>{singleProduct.title}</p>
+                <div className="detailContainer">
+                    <div className="productDetails">
+                        <div>
+                            <p>{singleProduct.title}</p>
+                        </div>
+                        <div>
+                            <p>{singleProduct.description}</p>
+                        </div>
+                        <div>
+                            <p>${singleProduct.price}</p>
+                        </div>
+                    
+                        <div>
+                            <img src={singleProduct.photo}></img>
+                        </div>
+                        <form onSubmit={addProdToCart}>
+                            <label>Quantity:</label>
+                            <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
+                            <button type='submit'>Add to Cart</button>
+                        </form> 
+                    </div>    
+                    <div className="reviewDetails">
+                        <div><h4>Customer Reviews</h4></div>
+                        <Reviews />
+                    </div>
                 </div>
-                <div>
-                    <p>{singleProduct.description}</p>
-                </div>
-                <div>
-                    <p>${singleProduct.price}</p>
-                </div>
-                <div>
-                    <img src={singleProduct.photo}></img>
-                </div>
-                <form onSubmit={addProdToCart}>
-                    <label>Quantity:</label>
-                    <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
-                    <button type='submit'>Add to Cart</button>
-                </form>
-                <div>
-                    <Reviews />
-                </div>
+
+
                 <div>
                     <AddReview />
                 </div>

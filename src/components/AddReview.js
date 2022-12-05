@@ -52,7 +52,7 @@ const AddReview = () => {
                     </div>
                     <div className="reviewDescription">
                         <div>Review Description: </div>
-                        <input onChange={updateDescription} value={description} type="textarea"></input>
+                        <input className="descriptionText" onChange={updateDescription} value={description} type="textarea"></input>
                     </div>
                     <div className="submitReview">
                         <button type="submit">Add Review</button>

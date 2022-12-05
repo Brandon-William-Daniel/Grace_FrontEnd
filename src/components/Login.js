@@ -67,7 +67,7 @@ const Login = () => {
                <button type = "submit">Login</button>
             </div>
         </form>
-        <div> <Link to = "/Register" className = "NavButton">Click here to Register</Link></div>
+        <div className="register"> <Link to = "/Register" className = "NavButton">Click here to Register</Link></div>
       </div>
     )
 }

@@ -20,8 +20,10 @@ import AddReview from "./components/AddReview";
 import DeleteReview from "./components/DeleteReview";
 import CatagoryProd from "./components/CatagoryProd";
 import DeleteProduct from "./components/DeleteProduct";
+import UpdateProduct from "./components/UpdateProduct";
+
 import "./style.css"
-import Checkout from "./components/Checkout";
+
 const router = createBrowserRouter([
     {
         path: "/",

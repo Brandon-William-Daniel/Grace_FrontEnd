@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from "react";
 import {useOutletContext} from 'react-router-dom';
+import Cart from "./Cart";
+
 
 const Profile = () => {
     const [current, setCurrent] = useState()
+    const [pastItem, setPastItem] = useState()
     const [cart, setCart] = useState()
-    const [past, setPast] = useState()
+    const [pastCart, setPastCart] = useState()
     const {user} = useOutletContext();
     
 
@@ -19,14 +22,15 @@ const Profile = () => {
                 }
             })
             const results = await data.json()
+           
             setCurrent(results.cart.products)
             setCart(results.cart)
-            // console.log(results)
+          
         } catch(error){
             console.log(error)
         }
 
-        }
+    }
 
         async function getPastCart () {
         try{
@@ -39,14 +43,16 @@ const Profile = () => {
                 }
             })
             const results = await data.json()
-            setPast(results.cart) 
+            console.log('pastCart', results.cart)
+            console.log('pastItem', results.cart.products)
+            setPastItem(results.cart.products)
+            setPastCart(results.cart) 
             // console.log(results)
         } catch(error){
             console.log(error)
         }
 
-        }
-     
+    }     
            
     useEffect(() => {  
             getCurrentCart();
@@ -66,25 +72,23 @@ const Profile = () => {
                     {user.isAdmin? <button>Admin</button> : "" } 
                 </div>: 'Must login or register to continue'}
             
-        
-            
-        </div>
-            <div><h1>Current Cart:</h1>
-               {/* {console.log('current', current)} */}
-                {current && current.length ? current.map(el => {
-                return  <div className = "productsDiv" key = {el.id}> 
-                        <div className = "title">{el.title}</div>
-                        <img src={el.photo} className="productImg"></img> 
-                        <div className = "description">{el.description}</div>
-                        <div className = "quantity">Quantity: {el.quantity}</div> 
-                        <div className = "price">Price: ${el.price}</div> 
-                            
-                        </div>}) : "There is currently nothing to be displayed"}
-                        <button> Buy Cart</button> 
             </div>
+            <div><h1>Current Cart - Total: ${ cart ? `${cart.total}` : '0'} </h1>
+
+            <Cart/>
+
+
+            </div>
+
             <div><h1>Past Orders:</h1>
-                 {/* {console.log('past', past)} */}
-                {past && past.length ? past.map(el => {
+                    
+                 
+
+                {pastCart && pastCart.length ? pastCart.map(pastCart =>{
+                    return <div key={pastCart.cartId}>
+                        {console.log('cartId', pastCart.cartId)}
+                        <div>{pastCart.total}</div>
+                {pastItem ? pastItem.map(el => {
                 return  <div className = "productsDiv" key = {el.id}> 
                         <div className = "title">{el.title}</div>
                         <img src={el.photo} className="productImg"></img> 
@@ -92,7 +96,8 @@ const Profile = () => {
                         <div className = "quantity">Quantity: {el.quantity}</div> 
                         <div className = "price">Price: ${el.price}</div> 
                             
-                        </div>}) : "You have no previous orders"}
+                        </div>}) : "You have no past orders"}
+                       </div>}) : "You have no previous orders"}
             </div>             
         </div>
        

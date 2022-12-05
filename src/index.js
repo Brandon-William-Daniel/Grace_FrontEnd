@@ -99,8 +99,8 @@ const router = createBrowserRouter([
                 element: <DeleteProduct />
             },
             {
-                path: "/cart/checkout",
-                element: <Checkout />
+                path: "/updateproduct/:productid",
+                element: <UpdateProduct />
             }
         ]
     }

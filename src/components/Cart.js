@@ -10,7 +10,7 @@ const Cart = () => {
     const {detailId} = useParams()
     const {products} = useOutletContext()
     const navigate = useNavigate()
-    console.log(user)
+    // console.log(user)
 
     useEffect(() => {
     async function getCart(){

@@ -11,6 +11,21 @@ const Checkout = () => {
     const [cvv, setCVV] = useState()
     // console.log(user)
 
+    async function saveCC(){
+        const ccFetch = await fetch(`` , {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: {
+                cc,
+                cvv
+            }
+        })
+
+    }
+
     async function checkoutCart(cartId){
         // console.log(cartId)
         const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${cartId}`, {
@@ -48,6 +63,7 @@ const Checkout = () => {
 
     return(
         <div>
+            <p>Ship TO: {user.address}</p>
             <form>
                 <label>Credit Card</label>
                 <input type='number' value={cc} onChange={(event) => {

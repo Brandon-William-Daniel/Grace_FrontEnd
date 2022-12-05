@@ -7,9 +7,29 @@ const Cart = () => {
     const [cart, setCart] = useState()
     const [cartId, setCartId] = useState()
     const {user} = useOutletContext()
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState()
     const navigate = useNavigate()
+    const [itemId, setItemId] = useState()
     // console.log(user)
+
+    async function updateQuantity(event){
+        event.preventDefault();
+        try {
+        const quanFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/update/${itemId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: {
+                quantity
+            }
+        })
+        console.log(quanFetch)
+    } catch (error) {
+        console.log(error)
+    }
+    }
 
     useEffect(() => {
     async function getCart(){
@@ -29,7 +49,7 @@ const Cart = () => {
     }, [])
 
     async function removeFromCart(itemId){
-        console.log(itemId)
+        // console.log(itemId)
         try {
             const removeFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/detail/${itemId}`, {
                 method: 'DELETE',
@@ -49,7 +69,7 @@ const Cart = () => {
         }
     }
 
-    // console.log('this is cart', cart)
+    console.log('this is cart', cart)
     return(
         <div>
             {cart && cart.length ? cart.map((cartItm, idx) => {
@@ -61,7 +81,13 @@ const Cart = () => {
                     <div className="cartDiv">
                         <div>Title: {cartItm.title}</div>
                         <div>Description: {cartItm.description}</div>
-                        <div>Quanitity: {cartItm.quantity} </div>
+                        {/* <form onSubmit={updateQuantity}> */}
+                            <div>Quantity: {cartItm.quantity}</div>
+                            {/* <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input> */}
+                            {/* <input type='submit' onClick={() => { */}
+                                {/* setItemId(cartItm.id) */}
+                            {/* }}></input> */}
+                        {/* </form> */}
                         <div>Price: ${cartItm.price}</div>
                         <br></br>
                             <button onClick={() => {

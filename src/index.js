@@ -23,7 +23,7 @@ import DeleteProduct from "./components/DeleteProduct";
 import UpdateProduct from "./components/UpdateProduct";
 
 import "./style.css"
-
+import Checkout from "./components/Checkout";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -101,6 +101,10 @@ const router = createBrowserRouter([
             {
                 path: "/updateproduct/:productid",
                 element: <UpdateProduct />
+            },
+            {
+                path: "/cart/checkout",
+                element: <Checkout />
             }
         ]
     }

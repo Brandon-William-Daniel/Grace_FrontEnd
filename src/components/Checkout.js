@@ -6,9 +6,9 @@ const Checkout = () => {
     const [cart, setCart] = useState()
     const [cartId, setCartId] = useState()
     const {user} = useOutletContext()
-    const {detailId} = useParams()
-    const {products} = useOutletContext()
     const navigate = useNavigate()
+    const [cc, setCC] = useState()
+    const [cvv, setCVV] = useState()
     console.log(user)
 
     async function checkoutCart(cartId){
@@ -50,9 +50,14 @@ const Checkout = () => {
         <div>
             <form>
                 <label>Credit Card</label>
-                <input type='number'></input>
+                <input type='number' value={cc} onChange={(event) => {
+                    console.log(event.target.value)
+                    setCC(event.target.value)
+                }}></input>
                 <label>CVV</label>
-                <input type='number'></input>
+                <input type='number' value={cvv} onChange={(event) => {
+                    setCVV(event.target.value)
+                }}></input>
             </form>
             <button onClick={() => {
                 checkoutCart(cartId)

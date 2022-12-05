@@ -9,10 +9,10 @@ const Checkout = () => {
     const navigate = useNavigate()
     const [cc, setCC] = useState()
     const [cvv, setCVV] = useState()
-    console.log(user)
+    // console.log(user)
 
     async function checkoutCart(cartId){
-        console.log(cartId)
+        // console.log(cartId)
         const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${cartId}`, {
             method: "DELETE",
             headers: {
@@ -20,7 +20,7 @@ const Checkout = () => {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        console.log(checkoutFetch)
+        // console.log(checkoutFetch)
         if(checkoutFetch){
             console.log('done')
             alert('Purchase Done')

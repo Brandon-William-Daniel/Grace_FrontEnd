@@ -7,10 +7,9 @@ const Cart = () => {
     const [cart, setCart] = useState()
     const [cartId, setCartId] = useState()
     const {user} = useOutletContext()
-    const {detailId} = useParams()
-    const {products} = useOutletContext()
+    const [quantity, setQuantity] = useState(1)
     const navigate = useNavigate()
-    console.log(user)
+    // console.log(user)
 
     useEffect(() => {
     async function getCart(){
@@ -54,8 +53,8 @@ const Cart = () => {
     return(
         <div>
             {cart && cart.length ? cart.map((cartItm, idx) => {
-                console.log(cartItm, 'cartItm')
-                console.log(cart, "cart")
+                // console.log(cartItm, 'cartItm')
+                // console.log(cart, "cart")
                 if(cartItm.active){
             return(
                 <div key={idx}>

@@ -11,20 +11,21 @@ const Cart = () => {
     const {products} = useOutletContext()
     const navigate = useNavigate()
     console.log(user)
+
     async function checkoutCart(cartId){
         console.log(cartId)
-        // const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${user.id}`, {
-        //     method: "DELETE",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': `Bearer ${localStorage.getItem('token')}`
-        //     }
-        // })
-        // // const msg = await checkoutFetch.json()
-        // if(checkoutFetch){
-        //     alert('Purchased')
-        //     navigate('/')
-        // }
+        const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${cartId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        // const msg = await checkoutFetch.json()
+        if(checkoutFetch){
+            alert('Purchased')
+            navigate('/')
+        }
     }
 
     useEffect(() => {
@@ -39,7 +40,7 @@ const Cart = () => {
         const jsonCart = await cartFetch.json()
         // console.log('cartFda',jsonCart.cart.cartId )
         setCart(jsonCart.cart.products)
-        setCartId(json.cart.cartId)
+        setCartId(jsonCart.cart.cartId)
      }
      getCart()
     }, [])
@@ -83,7 +84,7 @@ const Cart = () => {
             )}
         }): <p>Start filling your cart now!</p>}
         <button onClick={() => {
-            checkoutCart(cart.id)
+            checkoutCart(cartId)
         }}>Checkout</button>
         </div>
     )

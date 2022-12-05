@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 // NEED TO ADD TO ROUTER TO TEST
 const UpdateProduct = () => {
     const {productid} = useParams()
-    console.log(productid)
+    // console.log(productid)
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
     const [price, setPrice] = useState()
@@ -12,7 +12,7 @@ const UpdateProduct = () => {
     const [cat, setCat] = useState();
     const [active, setActive] = useState();
 
-    async function UpdateProduct(event){
+    async function updateProduct(event){
         event.preventDefault();
         const updateFetch = await fetch(`https://gg-3pln.onrender.com/api/products/updateproduct/${productid}`, {
             method: "PATCH",
@@ -30,7 +30,7 @@ const UpdateProduct = () => {
     return(
         <div>
             <h3>Update Product Here</h3>
-            <form onSubmit={newProduct}>
+            <form onSubmit={updateProduct}>
                 <label>Title:</label>
                 <input type='text' value={title} onChange={(event) => {
                     console.log(event.target.value)

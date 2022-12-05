@@ -10,7 +10,7 @@ const Products = () => {
     }
     return(
         <div className="productsContainer"> {
-        products ? products.map((product, idx) => {
+        products && products.length ? products.map((product, idx) => {
             // console.log()
             return(
                 <div className="productsDiv" key={idx}>

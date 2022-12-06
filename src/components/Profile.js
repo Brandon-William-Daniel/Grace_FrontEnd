@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useOutletContext} from 'react-router-dom';
+import {useOutletContext, Link} from 'react-router-dom';
 
 const Profile = () => {
     const [current, setCurrent] = useState()
@@ -63,7 +63,7 @@ const Profile = () => {
                     <h3>Username: {`${user.username}`}</h3>
                     <h3>Email: {`${user.email}`}</h3>
                     <h3>Current Ship To Address: {`${user.address}`}</h3>
-                    {user.isAdmin? <button>Admin</button> : "" } 
+                    {user.isAdmin? <button><Link to={`/admins`}>Admin Page</Link></button> : "" } 
                 </div>: 'Must login or register to continue'}
             
         

@@ -21,11 +21,27 @@ const Cart = () => {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
-            body: {
+            body: JSON.stringify({
                 quantity
-            }
+            })
         })
         console.log(quanFetch)
+        if(quanFetch){
+            async function regetCart(){
+                const cartFetch2 = await fetch(`https://gg-3pln.onrender.com/api/orders/viewcart`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'applicaion/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                const jsonCart2 = await cartFetch2.json()
+                setCart(jsonCart2.cart.products)
+                setCartId(jsonCart2.cart.cartId)
+            }
+            regetCart()
+            navigate('/cart')
+        }
     } catch (error) {
         console.log(error)
     }
@@ -69,7 +85,7 @@ const Cart = () => {
         }
     }
 
-    console.log('this is cart', cart)
+    // console.log('this is cart', cart)
     return(
         <div>
             {cart && cart.length ? cart.map((cartItm, idx) => {
@@ -81,13 +97,13 @@ const Cart = () => {
                     <div className="cartDiv">
                         <div>Title: {cartItm.title}</div>
                         <div>Description: {cartItm.description}</div>
-                        {/* <form onSubmit={updateQuantity}> */}
+                        <form onSubmit={updateQuantity}>
                             <div>Quantity: {cartItm.quantity}</div>
-                            {/* <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input> */}
-                            {/* <input type='submit' onClick={() => { */}
-                                {/* setItemId(cartItm.id) */}
-                            {/* }}></input> */}
-                        {/* </form> */}
+                            <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
+                            <input type='submit' onClick={() => {
+                                setItemId(cartItm.id) 
+                            }}></input>
+                        </form>
                         <div>Price: ${cartItm.price}</div>
                         <br></br>
                             <button onClick={() => {

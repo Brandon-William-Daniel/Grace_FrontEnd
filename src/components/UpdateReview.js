@@ -47,7 +47,7 @@ const UpdateReview = () => {
                     </div>
                     <div className="updateDescription">
                         <div>Update Description</div>
-                        <input type="text" value={description} onChange={changeDescription}></input>
+                        <input className="descriptionText" type="text" value={description} onChange={changeDescription}></input>
                     </div> 
                     <div className="updateReview">
                         <button type="submit">Update</button>       

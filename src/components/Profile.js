@@ -65,7 +65,7 @@ const Profile = () => {
             <div className = "mainPage"><h1>Profile</h1>
              <div>
                 {user && user.username ?
-                <div> 
+                <div className="profileInfo"> 
                     <h3>Username: {`${user.username}`}</h3>
                     <h3>Email: {`${user.email}`}</h3>
                     <h3>Current Ship To Address: {`${user.address}`}</h3>
@@ -74,9 +74,9 @@ const Profile = () => {
             
             </div>
             <div><h1>Current Cart - Total: ${ cart ? `${cart.total}` : '0'} </h1>
-
+            <div className="currentCart">
             <Cart/>
-
+            </div>
 
             </div>
 

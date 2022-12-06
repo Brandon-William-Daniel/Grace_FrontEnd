@@ -10,7 +10,7 @@ const Categories = () => {
                 method: 'GET'
             })
             const jsonFetch = await catFetch.json();
-            console.log(jsonFetch.cat)
+            // console.log(jsonFetch.cat)
             setCat(jsonFetch.cat)
         }
         getCat()

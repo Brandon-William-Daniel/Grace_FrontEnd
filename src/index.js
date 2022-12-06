@@ -24,6 +24,7 @@ import UpdateProduct from "./components/UpdateProduct";
 
 import "./style.css"
 import Checkout from "./components/Checkout";
+import AdminPage from "./components/AdminsPage";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart/checkout",
                 element: <Checkout />
+            },
+            {
+                path: "/admins",
+                element: <AdminPage />
             }
         ]
     }

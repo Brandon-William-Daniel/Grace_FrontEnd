@@ -75,21 +75,27 @@ const ProductDetails = () => {
                         <div>
                             <img src={singleProduct.photo}></img>
                         </div>
-                        <form onSubmit={addProdToCart}>
+                        {/* <form onSubmit={addProdToCart}>
                             <label>Quantity:</label>
                             <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
                             <button type='submit'>Add to Cart</button>
-                        </form> 
+                        </form>  */}
                     </div>    
                     <div className="reviewDetails">
+                    <form className="addCart" onSubmit={addProdToCart}>
+                            <label>Quantity:</label>
+                            <input className="cartQuantity" type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
+                            <button type='submit'>Add to Cart</button>
+                        </form> 
                         <div><h4>Customer Reviews</h4></div>
                         <Reviews />
+                        <AddReview />
+                        {/* <form className="addCart" onSubmit={addProdToCart}>
+                            <label>Quantity:</label>
+                            <input className="cartQuantity" type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
+                            <button type='submit'>Add to Cart</button>
+                        </form>  */}
                     </div>
-                </div>
-
-
-                <div>
-                    <AddReview />
                 </div>
 
             </div>

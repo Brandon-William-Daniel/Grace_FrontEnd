@@ -49,7 +49,7 @@ nav {
 
 #footer {
     color: rgb(255, 255, 255);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     /* height: 2.5rem; */
@@ -65,8 +65,13 @@ nav {
 }
 
 .reviewDiv {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     margin: .5%;
+    background: #fbfbfb;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 65%);
+    padding-left: 1%;
+    text-align: center;
 }
 
 h1 {
@@ -104,10 +109,12 @@ h1 {
 
 h4 {
     margin: .5%;
+    text-align: center;
 }
 
 .descriptionText {
-    width: 200px;
+    width: 350px;
+    height: 100px;
 }
 
 .container {
@@ -118,14 +125,25 @@ h4 {
     margin-right: auto;
     width: 250px;
     height: 250px;
+    text-align: center;
 }
 
-form {
+.registercontainer {
+    background: #fbfbfb;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 65%);
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 280px;
+}
+
+/* form {
     padding: 12px 44px;
     display: flex;
     flex-direction: column;
     text-align: center;
-}
+} */
 
 .TypingInput {
     padding: 3%;
@@ -138,10 +156,10 @@ form {
 .register {
     text-align: center;
 }
-
+/* 
 body {
-    /* background: #0000009e; */
-}
+    background: #0000009e;
+} */
 
 .catDiv{
     /* border-top: 1px solid black; */
@@ -191,4 +209,69 @@ button {
 
 .link {
     color: white;
+}
+
+.mainPage {
+    text-align: center;
+}
+
+.profileInfo {
+    background: #fbfbfb;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 65%);
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    height: 220px;
+    padding: 1%;
+}
+
+.checkout {
+    color: white;  
+    text-decoration: none;
+}
+
+.cartItems {
+    display: flex;
+    justify-content: center;
+}
+
+.cartButton {
+    background-color: black;
+    border: none;
+    border-radius: 21px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    height: 35.3px;
+    margin: 2% auto;
+    width: 137px;
+    text-align: center;
+}
+
+.reviewHeader {
+    text-align: center;
+}
+
+.addReview {
+    text-align: center;
+}
+
+.addCart {
+    display: flex;
+    flex-direction: column;
+    margin: .5%;
+    background: #fbfbfb;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 65%);
+    padding-left: 1%;
+    text-align: center;
+}
+
+.cartQuantity {
+    width: min-content;
+    margin: auto;
+}
+
+.cartDefault {
+    text-align: center;
 }

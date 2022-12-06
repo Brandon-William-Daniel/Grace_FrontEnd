@@ -44,8 +44,8 @@ const AddReview = () => {
 
     return(
         <div className="reviewDiv">
-            <h3>Add a review to a product</h3>
-                <form onSubmit={addNewReview}>
+            <h3 className="reviewHeader">Add a review to a product</h3>
+                <form className="addReview" onSubmit={addNewReview}>
                     <div className="reviewTitle">
                         <div>Review Title: </div>
                         <input onChange={updateTitle} value={title} type="text"></input>

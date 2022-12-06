@@ -93,7 +93,7 @@ const Cart = () => {
                 // console.log(cart, "cart")
                 if(cartItm.active){
             return(
-                <div key={idx}>
+                <div className="cartItems" key={idx}>
                     <div className="cartDiv">
                         <div>Title: {cartItm.title}</div>
                         <div>Description: {cartItm.description}</div>
@@ -114,10 +114,12 @@ const Cart = () => {
                     </div>
                 </div>
             )}
-        }): <p>Start filling your cart now!</p>}
+        }): <p className="cartDefault">Start filling your cart now!</p>}
+        <div className="cartButton">
         <button>
-            <Link to={'/cart/checkout'}>Checkout</Link>
+            <Link className="checkout" to={'/cart/checkout'}>Checkout</Link>
         </button>
+        </div>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useOutletContext, useParams } from 'react-router-dom'
 // NEED TO ADD TO ROUTER TO TEST
 const UpdateProduct = () => {
     const {productid} = useParams()
@@ -11,7 +11,8 @@ const UpdateProduct = () => {
     const [photo, setPhoto] = useState();
     const [cat, setCat] = useState();
     const [active, setActive] = useState();
-
+    const {setProducts} = useOutletContext()
+    const navigate = useNavigate()
     async function updateProduct(event){
         event.preventDefault();
         const updateFetch = await fetch(`https://gg-3pln.onrender.com/api/products/updateproduct/${productid}`, {
@@ -26,6 +27,16 @@ const UpdateProduct = () => {
         })
         const jsonFetch = await updateFetch.json();
         console.log(jsonFetch)
+        if(jsonFetch){
+            async function reGetProds(){
+                const prodFetch = await fetch(`https://gg-3pln.onrender.com/api/products`)
+                const jsonFetch = await prodFetch.json()
+                setProducts(jsonFetch.products)
+            }
+            reGetProds()
+            alert('Updated')
+            navigate('/products')
+        }
     }
     return(
         <div>

@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import { useOutletContext } from "react-router";
-
+import React, { useState } from "react";
+import { useOutletContext, useNavigate } from "react-router";
 const AddCategory = () => {
-    const [catagoryName, setCatagoryName] = useState()
+    const [catName, setCatName] = useState()
     const {user} = useOutletContext()
+    const [cat, setCat] = useState()
+    const navigate = useNavigate()
     async function createcatagory(event){
         event.preventDefault();
         const newCatFetch = await fetch(`https://gg-3pln.onrender.com/api/catagories/newcatagory`, {
@@ -13,11 +14,20 @@ const AddCategory = () => {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                catagoryName
+                catName
             })
         })
-        const jsonCatFetch = await newCatFetch.json()
-        console.log(jsonCatFetch)
+        console.log(newCatFetch)
+        if(newCatFetch){
+            async function getAllCat(){
+                const catFetch = await fetch(`https://gg-3pln.onrender.com/api/catagories`)
+                const jsonFetch = await catFetch.json()
+                setCat(jsonFetc)
+            }
+            getAllCat()
+            alert('Catagory Created')
+            navigate('/categories')
+        }
     }
     if(user && user.isAdmin){
     return(
@@ -25,8 +35,8 @@ const AddCategory = () => {
             <h3>Create A New Cataogry Here!</h3>
             <form onSubmit={createcatagory}>
                 <label>Catagory Name:</label>
-                <input type='text' value={catagoryName} onChange={(event) => {
-                    setCatagoryName(event.target.value)
+                <input type='text' value={catName} onChange={(event) => {
+                    setCatName(event.target.value)
                 }}></input>
                 <br></br>
                 <input type='submit'></input>

@@ -17,7 +17,7 @@ const AdminPage = () => {
                 return(
                     <div className='productsDiv' key={idx}>
                         <p>Title: {product.title}</p>
-                        <p>Price: {product.price}</p>
+                        <p>Price: ${product.price}</p>
                         <button>
                             <Link to={`/product/delete/${product.id}`}>Delete Product</Link>
                         </button>

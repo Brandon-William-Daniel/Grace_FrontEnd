@@ -68,8 +68,12 @@ const Checkout = () => {
 
 
     return(
-        <div>
-            <form>
+
+        <div className='checkoutContainer'>
+            <p>Ship TO: {user.address}</p>
+            <form className='ccForm'>
+
+       
                 <label>Credit Card</label>
                 <input type='number' value={creditCard} onChange={(event) => {
                     

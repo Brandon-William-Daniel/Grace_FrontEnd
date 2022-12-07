@@ -62,9 +62,9 @@ const Checkout = () => {
 
 
     return(
-        <div>
+        <div className='checkoutContainer'>
             <p>Ship TO: {user.address}</p>
-            <form>
+            <form className='ccForm'>
                 <label>Credit Card</label>
                 <input type='number' value={cc} onChange={(event) => {
                     console.log(event.target.value)

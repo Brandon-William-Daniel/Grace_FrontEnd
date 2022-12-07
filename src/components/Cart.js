@@ -88,6 +88,7 @@ const Cart = () => {
     // console.log('this is cart', cart)
     return(
         <div>
+            <div className="productsContainer">
             {cart && cart.length ? cart.map((cartItm, idx) => {
                 // console.log(cartItm, 'cartItm')
                 // console.log(cart, "cart")
@@ -95,8 +96,8 @@ const Cart = () => {
             return(
                 <div className="cartItems" key={idx}>
                     <div className="cartDiv">
-                        <div>Title: {cartItm.title}</div>
-                        <div>Description: {cartItm.description}</div>
+                        <div><b>Title:</b> <div>{cartItm.title}</div></div>
+                        <div><b>Description:</b> <div>{cartItm.description}</div></div>
                         <form onSubmit={updateQuantity}>
                             <div>Quantity: {cartItm.quantity}</div>
                             <input type='number' value={quantity} onChange={(event) => {setQuantity(event.target.value)}}></input>
@@ -115,6 +116,7 @@ const Cart = () => {
                 </div>
             )}
         }): <p className="cartDefault">Start filling your cart now!</p>}
+        </div>
         <div className="cartButton">
         <button>
             <Link className="checkout" to={'/cart/checkout'}>Checkout</Link>

@@ -31,8 +31,10 @@ const Reviews = () => {
             return(
                 <div className="reviewDiv" key={idx}>
                 <div>
-                    <p>Title: {review.title}</p>
-                    <p>Description: {review.description}</p>
+                    <p><b>Title</b></p>
+                        <p>{review.title}</p>
+                    <p><b>Description:</b></p>
+                        <p>{review.description}</p>
                     {review.userId === user.id ? <UpdateReview /> : <p></p> }
                     {review.userId === user.id ? <DeleteReview /> : <p></p> }
                 </div>

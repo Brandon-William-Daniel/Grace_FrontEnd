@@ -36,6 +36,7 @@ const Checkout = () => {
             
             const results = await data.json()
             console.log(results)
+            console.log(checkoutFetch)
             if( !results.name){
                 console.log('done')
                 alert('Purchase Done')

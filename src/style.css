@@ -223,7 +223,7 @@ button {
     margin-left: auto;
     margin-right: auto;
     width: 350px;
-    height: 220px;
+    height: 260px;
     padding: 1%;
 }
 
@@ -347,6 +347,29 @@ button {
     flex-direction: column;
     text-align: center;
     width: 350px;
+    height: 350px;
+    justify-content: space-evenly;
+    border-radius: 8px;
+    background: #fbfbfb;
+    margin: .5%;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 65%);
+}
+
+.registerForm {
+    text-align: center;
+}
+
+.userContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.userDiv {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 275px;
     height: 350px;
     justify-content: space-evenly;
     border-radius: 8px;

@@ -60,7 +60,7 @@ const Register = () => {
         }
          return (
             <div className = "registercontainer">
-            <form onSubmit={registerAPI}>
+            <form className="registerForm" onSubmit={registerAPI}>
                 <div className = "TypingInput">
                     <div>Enter Username: </div>
                     <input type = "text" value = {username} onChange={changeUser}></input>

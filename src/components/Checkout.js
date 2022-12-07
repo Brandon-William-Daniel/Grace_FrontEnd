@@ -5,7 +5,7 @@ import { useOutletContext, useParams, useNavigate } from 'react-router'
 const Checkout = () => {
     const [cart, setCart] = useState()
     const [cartId, setCartId] = useState()
-    const {user} = useOutletContext()
+    const {user, getUser} = useOutletContext()
     const navigate = useNavigate()
     const [creditCard, setCC] = useState()
     const [cvv, setCVV] = useState()
@@ -32,13 +32,14 @@ const Checkout = () => {
                 }
             })
 
-            
+            console.log(checkoutFetch)
             
             const results = await data.json()
             console.log(results)
             if( !results.name){
                 console.log('done')
                 alert('Purchase Done')
+                getUser()
                 navigate('/')
             }
             

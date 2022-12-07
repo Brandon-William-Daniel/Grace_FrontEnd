@@ -69,7 +69,9 @@ const Profile = () => {
                     <h3>Username: {`${user.username}`}</h3>
                     <h3>Email: {`${user.email}`}</h3>
                     <h3>Current Ship To Address: {`${user.address}`}</h3>
-                    {user.isAdmin? <button><Link className="link" to={`/admins`}>Admin Page</Link></button> : "" } 
+                    {user.creditCard? <h3>Saved Card: ****-****-****-{`${user.creditCard}`}</h3>:<h3> No Card on File</h3>}
+                    {user.isAdmin? <button><Link to={`/admins`}>Admin Page</Link></button> : "" } 
+
                 </div>: 'Must login or register to continue'}
             
             </div>

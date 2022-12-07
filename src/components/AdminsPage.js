@@ -2,7 +2,9 @@ import React from 'react'
 import {Link, useOutletContext} from 'react-router-dom'
 const AdminPage = () => {
     const {products} = useOutletContext()
-    console.log(products)
+    const {user} = useOutletContext()
+    // console.log(products)
+    if(user && user.isAdmin){
     return(
         <div>
             <button>
@@ -13,7 +15,7 @@ const AdminPage = () => {
                 <Link to={`/addcategory`}>New Category</Link>
             </button>
             <button>
-                <Link to={`/allusers`}></Link>
+                <Link to={`/allusers`}>Users</Link>
             </button>
             <br></br>
             {products && products.length ? products.map((product, idx) => {
@@ -31,7 +33,13 @@ const AdminPage = () => {
                 )
             }):<p>Bad code</p>}
         </div>
-    )
+    )}else{
+        return(
+            <div>
+                <h1>Admins only beyong this point</h1>
+            </div>
+        )
+    }
 }
 
 export default AdminPage

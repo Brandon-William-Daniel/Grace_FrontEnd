@@ -37,7 +37,7 @@ const Cart = () => {
                 })
                 const jsonCart2 = await cartFetch2.json()
                 setCart(jsonCart2.cart.products)
-                setCartId(jsonCart2.cart.cartId)
+                setCartId(jsonCart2.cart.id)
             }
             regetCart()
             navigate('/cart')
@@ -59,7 +59,7 @@ const Cart = () => {
         const jsonCart = await cartFetch.json()
         // console.log('cartFda',jsonCart.cart.cartId )
         setCart(jsonCart.cart.products)
-        setCartId(jsonCart.cart.cartId)
+        setCartId(jsonCart.cart.id)
      }
      getCart()
     }, [])
@@ -88,7 +88,6 @@ const Cart = () => {
     // console.log('this is cart', cart)
     return(
         <div>
-            <h1>Current Cart - Total: ${ cart && cart.total ? `${cart.total}` : '0'} </h1>
             <div className="productsContainer">
             
             {cart && cart.length ? cart.map((cartItm, idx) => {

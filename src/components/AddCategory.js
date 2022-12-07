@@ -32,15 +32,19 @@ const AddCategory = () => {
     if(user && user.isAdmin){
     return(
         <div>
-            <h3>Create A New Cataogry Here!</h3>
+            <h3 className="newCategoryHeader">Create A New Cataogry Here!</h3>
+            <div className="addCategoryContainer">
             <form onSubmit={createcatagory}>
-                <label>Catagory Name:</label>
+                <div>
+                    <label>Catagory Name:</label>
+                </div>
                 <input type='text' value={catName} onChange={(event) => {
                     setCatName(event.target.value)
                 }}></input>
                 <br></br>
-                <input type='submit'></input>
+                <input className="submit" type='submit'></input>
             </form>
+            </div>
         </div>
     )}else{
         return(

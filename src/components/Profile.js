@@ -71,6 +71,7 @@ const Profile = () => {
                     <h3>Current Ship To Address: {`${user.address}`}</h3>
                     {user.creditCard? <h3>Saved Card: ****-****-****-{`${user.creditCard}`}</h3>:<h3> No Card on File</h3>}
                     {user.isAdmin? <button><Link to={`/admins`}>Admin Page</Link></button> : "" } 
+
                 </div>: 'Must login or register to continue'}
             
             </div>

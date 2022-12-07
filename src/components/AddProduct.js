@@ -45,44 +45,54 @@ const AddProduct = () => {
     if(user && user.isAdmin){
         return(
             <div>
-                <h3>Create a new product here!</h3>
+                <h3 className="newProductHeader">Create a new product here!</h3>
+                <div className="addProductContainer">
                 <form onSubmit={newProduct}>
-                    <label>Title:</label>
+                    <div className="TypingInput">
+                    <div><label>Title:</label></div>
                     <input type='text' value={title} onChange={(event) => {
                         console.log(event.target.value)
                         setTitle(event.target.value)
-                    }}></input>
+                    }}></input></div>
                     <br></br>
-                    <label>Description:</label>
+                    <div className="TypingInput">
+                    <div><label>Description:</label></div>
                     <input type='text' value={description} onChange={(event) => {
                         setDescription(event.target.value)
-                    }}></input>
+                    }}></input></div>
                     <br></br>
-                    <label>Price:</label>
+                    <div className="TypingInput">
+                    <div><label>Price:</label></div>
                     <input type='number' value={price} onChange={(event) => {
                         setPrice(event.target.value)
-                    }}></input>
+                    }}></input></div>
                     <br></br>
-                    <label>invQty:</label>
+                    <div className="TypingInput">
+                    <div><label>invQty:</label></div>
                     <input type='number' value={invQty} onChange={(event) => {
                         setInvQty(event.target.value)
-                    }}></input>
+                    }}></input></div>
                     <br></br>
-                    <label>Photo URL:</label>
+                    <div className="TypingInput">
+                    <div><label>Photo URL:</label></div>
                     <input type='text' value={photo} onChange={(event) => {
                         setPhoto(event.target.value)
-                    }}></input>
+                    }}></input></div>
                     <br></br>
-                    <label>Catagory ID:</label>
+                    <div className="TypingInput">
+                    <div><label>Catagory ID:</label></div>
                     <input type='number' value={cat} onChange={(event) => {
                         setCat(event.target.value)
-                    }}></input>
+                    }}></input></div>
                     <br></br>
+                    <div>
                     <label>Active?</label>
-                    <button onClick={() => {setActive(true)}}>True</button><button onClick={() => {setActive(false)}}>False</button>
+                    </div>
+                    <button onClick={() => {setActive(true)}}>True</button>&nbsp;<button onClick={() => {setActive(false)}}>False</button>
                     <br></br>
-                    <input type='submit'></input>
+                    <input className="submit" type='submit'></input>
                 </form>
+                </div>
             </div>
         )} else{
             return(

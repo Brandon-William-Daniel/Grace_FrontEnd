@@ -25,6 +25,7 @@ import UpdateProduct from "./components/UpdateProduct";
 import "./style.css"
 import Checkout from "./components/Checkout";
 import AdminPage from "./components/AdminsPage";
+import AllUsers from "./components/AllUsers";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
             {
                 path: "/admins",
                 element: <AdminPage />
+            },
+            {
+                path: "/allusers",
+                element: <AllUsers />
             }
         ]
     }

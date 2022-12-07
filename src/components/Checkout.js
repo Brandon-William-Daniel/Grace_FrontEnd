@@ -11,7 +11,6 @@ const Checkout = () => {
     const [cvv, setCVV] = useState()
 
 
-
     async function checkoutCart(cartId){
         try {
             const data = await fetch(`https://gg-3pln.onrender.com/api/users/credit`, {
@@ -70,7 +69,6 @@ const Checkout = () => {
 
     return(
         <div>
-            <p>Ship TO: {user.address}</p>
             <form>
                 <label>Credit Card</label>
                 <input type='number' value={creditCard} onChange={(event) => {
@@ -81,6 +79,8 @@ const Checkout = () => {
                 <input type='number' value={cvv} onChange={(event) => {
                     setCVV(event.target.value)
                 }}></input>
+                <label>Address:</label>
+                <input placeholder={user.address} type='text'></input>
             </form>
             <button onClick={() => {
                 checkoutCart(cartId)

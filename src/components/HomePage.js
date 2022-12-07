@@ -32,7 +32,7 @@ const Homepage = () => {
                 }
             })
             const getUser = await data.json()
-            console.log('getUser', getUser)
+            
           if(!getUser.username){
             setUser()
           }

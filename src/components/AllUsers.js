@@ -4,6 +4,8 @@ import { json, useOutletContext } from 'react-router'
 const AllUsers = () => {
     const {user} = useOutletContext()
     const [allUsers, setAllUsers] = useState()
+
+
     async function makeAdmin(userId){
         const makeFetch = await fetch(`https://gg-3pln.onrender.com/api/users/isadmin/${userId}`, {
             method: "PATCH",
@@ -17,12 +19,13 @@ const AllUsers = () => {
         })
         console.log(makeFetch)
         if(makeFetch){
+            getUsers()
             alert('User is now admin')
 
         }
     }
 
-    useEffect(() => {
+    
         async function getUsers(){
             const userFetch = await fetch(`https://gg-3pln.onrender.com/api/users/admin`, {
                 method: "GET",
@@ -35,8 +38,11 @@ const AllUsers = () => {
             console.log(jsonFetch)
             setAllUsers(jsonFetch)
         }
+
+    useEffect(() => {
         getUsers()
     }, [])
+
     if(user && user.isAdmin){
     return(
         <div>{

@@ -88,7 +88,9 @@ const Cart = () => {
     // console.log('this is cart', cart)
     return(
         <div>
+            <h1>Current Cart - Total: ${ cart && cart.total ? `${cart.total}` : '0'} </h1>
             <div className="productsContainer">
+            
             {cart && cart.length ? cart.map((cartItm, idx) => {
                 // console.log(cartItm, 'cartItm')
                 // console.log(cart, "cart")

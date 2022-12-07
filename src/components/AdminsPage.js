@@ -12,6 +12,9 @@ const AdminPage = () => {
             <button>
                 <Link to={`/addcategory`}>New Category</Link>
             </button>
+            <button>
+                <Link to={`/allusers`}></Link>
+            </button>
             <br></br>
             {products && products.length ? products.map((product, idx) => {
                 return(

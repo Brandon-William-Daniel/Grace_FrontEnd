@@ -7,25 +7,45 @@ const Checkout = () => {
     const [cartId, setCartId] = useState()
     const {user} = useOutletContext()
     const navigate = useNavigate()
-    const [cc, setCC] = useState()
+    const [creditCard, setCC] = useState()
     const [cvv, setCVV] = useState()
-    console.log(user)
+
 
     async function checkoutCart(cartId){
-        console.log(cartId)
-        const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${cartId}`, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+        try {
+            const data = await fetch(`https://gg-3pln.onrender.com/api/users/credit`, {
+                method : "POST",
+                headers : {
+                    'Content-Type' : "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },body: JSON.stringify({
+                    creditCard
+                  })
+                
+            })
+
+            const checkoutFetch = await fetch(`https://gg-3pln.onrender.com/api/orders/cart/${cartId}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+
+            
+            
+            const results = await data.json()
+            console.log(results)
+            if( !results.name){
+                console.log('done')
+                alert('Purchase Done')
+                navigate('/')
             }
-        })
-        console.log(checkoutFetch)
-        if(checkoutFetch){
-            console.log('done')
-            alert('Purchase Done')
-            navigate('/')
+            
+        } catch (error) {
+            console.log(error)
         }
+        
     }
 
     useEffect(() => {
@@ -50,8 +70,8 @@ const Checkout = () => {
         <div>
             <form>
                 <label>Credit Card</label>
-                <input type='number' value={cc} onChange={(event) => {
-                    console.log(event.target.value)
+                <input type='number' value={creditCard} onChange={(event) => {
+                    
                     setCC(event.target.value)
                 }}></input>
                 <label>CVV</label>

@@ -49,8 +49,8 @@ const Cart = () => {
     return(
         <div>
             {cart && cart.length ? cart.map((cartItm, idx) => {
-                console.log(cartItm, 'cartItm')
-                console.log(cart, "cart")
+                // console.log(cartItm, 'cartItm')
+                // console.log(cart, "cart")
                 if(cartItm.active){
             return(
                 <div key={idx}>

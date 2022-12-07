@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useOutletContext} from 'react-router-dom';
+import {useOutletContext, Link} from 'react-router-dom';
 import Cart from "./Cart";
 
 
@@ -65,18 +65,18 @@ const Profile = () => {
             <div className = "mainPage"><h1>Profile</h1>
              <div>
                 {user && user.username ?
-                <div> 
+                <div className="profileInfo"> 
                     <h3>Username: {`${user.username}`}</h3>
                     <h3>Email: {`${user.email}`}</h3>
                     <h3>Current Ship To Address: {`${user.address}`}</h3>
-                    {user.isAdmin? <button>Admin</button> : "" } 
+                    {user.isAdmin? <button><Link to={`/admins`}>Admin Page</Link></button> : "" } 
                 </div>: 'Must login or register to continue'}
             
             </div>
             <div><h1>Current Cart - Total: ${ cart ? `${cart.total}` : '0'} </h1>
-
+            <div className="currentCart">
             <Cart/>
-
+            </div>
 
             </div>
 

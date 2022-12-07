@@ -59,7 +59,7 @@ const Register = () => {
             setAddress(event.target.value)
         }
          return (
-            <div className = "container">
+            <div className = "registercontainer">
             <form onSubmit={registerAPI}>
                 <div className = "TypingInput">
                     <div>Enter Username: </div>

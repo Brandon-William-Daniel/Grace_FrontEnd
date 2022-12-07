@@ -39,18 +39,18 @@ const AllUsers = () => {
     }, [])
     if(user && user.isAdmin){
     return(
-        <div>{
+        <div className='userContainer'>{
             allUsers && allUsers.length ? allUsers.map((indivUser, idx) => {
                 return(
-                    <div className='productsDiv' key={idx}>
-                        <p> Id: {indivUser.id} </p>
-                        <p> Username: {indivUser.username} </p>
-                        <p> Email: {indivUser.email} </p>
-                        isAdmin?: {indivUser.isAdmin?<p>true</p> : <p>False</p>}
+                    <div className='userDiv' key={idx}>
+                        <p> <b>Id:</b> <div>{indivUser.id}</div> </p>
+                        <p> <b>Username:</b> <div>{indivUser.username}</div> </p>
+                        <p> <b>Email:</b> <div>{indivUser.email}</div> </p>
+                        <b>isAdmin?:</b> {indivUser.isAdmin?<p>true</p> : <p>False</p>}
                         <button onClick={() => {
                             makeAdmin(indivUser.id)
                         }}>Make admin</button>
-                        <p> Address: {indivUser.address} </p>
+                        <p> <b>Address:</b> <div>{indivUser.address}</div> </p>
                     </div>
                 )
             }):<div>No Users</div>

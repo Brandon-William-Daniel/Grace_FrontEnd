@@ -14,11 +14,11 @@ const AdminPage = () => {
 
             <button>
                 <Link className='link' to={`/addcategory`}>New Category</Link>
-            </button>
+            </button>&nbsp;
             
             
             <button>
-                <Link to={`/allusers`}>Users</Link>
+                <Link className='link' to={`/allusers`}>Users</Link>
             </button>
             
             </div>

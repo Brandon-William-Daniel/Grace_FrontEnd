@@ -85,21 +85,19 @@ const Profile = () => {
             <div><h1>Past Orders:</h1>
                     
                  
-
-                {pastCart && pastCart.length ? pastCart.map(pastCart =>{
-                    return <div key={pastCart.cartId}>
-                        {console.log('cartId', pastCart.cartId)}
-                        <div>{pastCart.total}</div>
-                {pastItem ? pastItem.map(el => {
-                return  <div className = "productsDiv" key = {el.id}> 
-                        <div className = "title">{el.title}</div>
-                        <img src={el.photo} className="productImg"></img> 
-                        <div className = "description">{el.description}</div>
-                        <div className = "quantity">Quantity: {el.quantity}</div> 
-                        <div className = "price">Price: ${el.price}</div> 
-                            
-                        </div>}) : "You have no past orders"}
-                       </div>}) : "You have no previous orders"}
+{console.log('frontface',pastCart)}
+                {pastCart && pastCart.cartId ? <div><h3>Last Cart Total: ${`${pastCart.total}`}</h3>
+                <h3>Last Cart Shipping Address: {`${pastCart.shipTo}`}</h3> </div>: "No Past Orders"}
+                {pastCart ? pastCart.products.map(el => {
+                    return  <div className="cartItems" key={el.id}>
+                            <div className="cartDiv">
+                            <div><b>Title:</b>{el.title}</div>
+                            <div><b>Description:</b> {el.description}</div>
+                            <div>Quantity: {el.quantity}</div>
+                            <div>Price: ${el.price}</div></div>
+                            <br></br>
+                </div>}) : "You have no past orders"}
+                       
             </div>             
         </div>
        
